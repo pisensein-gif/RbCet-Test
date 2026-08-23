@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import heroVideo from '../assets/videos/Hero.mp4';
 import './Hero.css';
 
