@@ -1,0 +1,113 @@
+.category-page {
+  padding-top: 100px; /* space for fixed navbar */
+  min-height: 100vh;
+}
+
+.category-header {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.back-link {
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--accent-color);
+}
+
+.category-title {
+  font-size: 3rem;
+  color: var(--accent-color);
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.category-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.category-content {
+  padding-top: 40px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state h2 {
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.status-badge {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.status-badge.upcoming {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+
+.status-badge.past {
+  background-color: rgba(150, 150, 150, 0.2);
+  color: #aaaaaa;
+  border: 1px solid rgba(150, 150, 150, 0.4);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--text-secondary);
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  background-color: rgba(255,255,255,0.1);
+}
+
+.glow-btn {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .back-link {
+    position: static;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}
