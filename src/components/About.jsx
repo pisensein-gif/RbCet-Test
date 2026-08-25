@@ -61,10 +61,19 @@ const About = () => {
             </div>
           </div>
 
-          {/* Full Panoramic Team Photo Showcase (100% Complete View) */}
+          {/* Creative Torn Paper Frame Team Showcase */}
           <div className="about-team-showcase">
-            <div className="team-photo-frame">
-              <img src={teamImage} alt="Team RoboCET" className="about-team-photo" />
+            <div className="torn-paper-container">
+              <div className="torn-edge-top"></div>
+              <div className="torn-paper-body">
+                <div className="team-photo-frame">
+                  <img src={teamImage} alt="Team RoboCET" className="about-team-photo" />
+                </div>
+                <div className="torn-paper-caption">
+                  <span>TEAM ROBOCET • COLLEGE OF ENGINEERING TRIVANDRUM</span>
+                </div>
+              </div>
+              <div className="torn-edge-bottom"></div>
             </div>
           </div>
 
