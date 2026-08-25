@@ -1,0 +1,95 @@
+.gallery-collage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  width: 260px;
+  height: 320px;
+  margin: -20px -30px; /* Negative margin creates the overlap */
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    width: 200px;
+    height: 240px;
+    margin: -15px -20px;
+  }
+}
+
+.photo-frame {
+  background-color: white;
+  padding: 12px 12px 40px 12px;
+  border-radius: 4px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Add varied rotations and base z-indexes to make the pile look natural */
+.gallery-item:nth-child(1) { z-index: 2; }
+.gallery-item:nth-child(2) { z-index: 3; }
+.gallery-item:nth-child(3) { z-index: 1; }
+.gallery-item:nth-child(4) { z-index: 4; }
+.gallery-item:nth-child(5) { z-index: 2; }
+.gallery-item:nth-child(6) { z-index: 5; }
+.gallery-item:nth-child(7) { z-index: 3; }
+
+.gallery-item:nth-child(1) .photo-frame { transform: rotate(-8deg); }
+.gallery-item:nth-child(2) .photo-frame { transform: rotate(5deg) translateY(20px); }
+.gallery-item:nth-child(3) .photo-frame { transform: rotate(-4deg) translateY(-10px); }
+.gallery-item:nth-child(4) .photo-frame { transform: rotate(10deg); }
+.gallery-item:nth-child(5) .photo-frame { transform: rotate(-6deg) translateY(15px); }
+.gallery-item:nth-child(6) .photo-frame { transform: rotate(3deg) translateY(-20px); }
+.gallery-item:nth-child(7) .photo-frame { transform: rotate(-12deg); }
+
+/* When hovered, bring to front, straighten, and scale */
+.gallery-item:hover {
+  z-index: 100;
+}
+
+.gallery-item:hover .photo-frame {
+  transform: rotate(0deg) scale(1.15) translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.gallery-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 80px; /* Increased from 20px to move it further right */
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .gallery-btn-wrapper {
+    margin-top: 30px;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.view-more-btn {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+}

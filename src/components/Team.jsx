@@ -2,25 +2,25 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Team.css';
 
-import imgGautham from '../assets/execom/Gautham_syam.jpg';
-import imgDon from '../assets/execom/DON JOSEPH CHACKO.jpg';
-import imgAfsal from '../assets/execom/Afsal V N.jpg';
-import imgAkash from '../assets/execom/akash.jpg';
-import imgBlesson from '../assets/execom/Blesson.jpg';
-import imgPrithvika from '../assets/execom/Prithvika.jpg';
-import imgSheheer from '../assets/execom/Sheheer.jpg';
-import imgAkul from '../assets/execom/Akul.jpg';
-import imgRohann from '../assets/execom/Rohann.jpg';
-import imgNoel from '../assets/execom/Noel Thomas Joshy.jpg';
-import imgGovindh from '../assets/execom/Govindh J.jpg';
-import imgBharath from '../assets/execom/Bharath R.jpg';
-import imgSreesanth from '../assets/execom/Sreesanth.jpg';
-import imgAaryan from '../assets/execom/AARYAN SAJ.jpg';
-import imgNohid from '../assets/execom/Nohid John.jpg';
-import imgSisira from '../assets/execom/Sisira_thomas.jpg';
-import imgSam from '../assets/execom/SamBCletus.jpg';
-import imgKailasnath from '../assets/execom/Kailasnath_A.jpg';
-import imgAnavadya from '../assets/execom/Anavadya Pradeep.jpg';
+import imgGautham from '../assets/execom/Gautham_syam.webp';
+import imgDon from '../assets/execom/DON JOSEPH CHACKO.webp';
+import imgAfsal from '../assets/execom/Afsal V N.webp';
+import imgAkash from '../assets/execom/akash.webp';
+import imgBlesson from '../assets/execom/Blesson.webp';
+import imgPrithvika from '../assets/execom/Prithvika.webp';
+import imgSheheer from '../assets/execom/Sheheer.webp';
+import imgAkul from '../assets/execom/Akul.webp';
+import imgRohann from '../assets/execom/Rohann.webp';
+import imgNoel from '../assets/execom/Noel Thomas Joshy.webp';
+import imgGovindh from '../assets/execom/Govindh J.webp';
+import imgBharath from '../assets/execom/Bharath R.webp';
+import imgSreesanth from '../assets/execom/Sreesanth.webp';
+import imgAaryan from '../assets/execom/AARYAN SAJ.webp';
+import imgNohid from '../assets/execom/Nohid John.webp';
+import imgSisira from '../assets/execom/Sisira_thomas.webp';
+import imgSam from '../assets/execom/SamBCletus.webp';
+import imgKailasnath from '../assets/execom/Kailasnath_A.webp';
+import imgAnavadya from '../assets/execom/Anavadya Pradeep.webp';
 
 const Team = () => {
   const teamMembers = [

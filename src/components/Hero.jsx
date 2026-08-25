@@ -1,5 +1,5 @@
 import React from 'react';
-import heroVideo from '../assets/videos/Hero.mp4';
+import heroVideo from '../assets/videos/Hero2.mp4';
 import './Hero.css';
 
 const Hero = () => {
@@ -16,3 +16,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

@@ -4,6 +4,7 @@ import About from '../components/About';
 import Events from '../components/Events';
 import Team from '../components/Team';
 import Contact from '../components/Contact';
+import Gallery from '../components/Gallery';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <About />
       <Events />
       <Team />
+      <Gallery />
       <Contact />
     </div>
   );
