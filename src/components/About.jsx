@@ -61,19 +61,35 @@ const About = () => {
             </div>
           </div>
 
-          {/* Creative Torn Paper Frame Team Showcase */}
+          {/* Premium Cybernetic Tech Frame Team Showcase */}
           <div className="about-team-showcase">
-            <div className="torn-paper-container">
-              <div className="torn-edge-top"></div>
-              <div className="torn-paper-body">
-                <div className="team-photo-frame">
-                  <img src={teamImage} alt="Team RoboCET" className="about-team-photo" />
+            <div className="cyber-frame-wrapper">
+              {/* Glowing Tech Corner Brackets */}
+              <div className="corner-bracket top-left"></div>
+              <div className="corner-bracket top-right"></div>
+              <div className="corner-bracket bottom-left"></div>
+              <div className="corner-bracket bottom-right"></div>
+
+              {/* Top Tech Header Bar */}
+              <div className="cyber-frame-header">
+                <div className="tech-indicator">
+                  <span className="dot-pulse"></span>
+                  <span className="tech-label">SYS.REC // 2026</span>
                 </div>
-                <div className="torn-paper-caption">
-                  <span>TEAM ROBOCET • COLLEGE OF ENGINEERING TRIVANDRUM</span>
-                </div>
+                <span className="tech-title">TEAM ROBOCET • CET</span>
               </div>
-              <div className="torn-edge-bottom"></div>
+
+              {/* Photo Display Window */}
+              <div className="team-photo-frame">
+                <img src={teamImage} alt="Team RoboCET" className="about-team-photo" />
+                <div className="scanline-overlay"></div>
+              </div>
+
+              {/* Bottom Tech Bar */}
+              <div className="cyber-frame-footer">
+                <span className="tech-sub">COLLEGE OF ENGINEERING TRIVANDRUM</span>
+                <span className="tech-tag">ROBOTICS CLUB</span>
+              </div>
             </div>
           </div>
 
