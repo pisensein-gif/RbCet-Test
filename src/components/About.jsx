@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Network, Crosshair, Cpu } from 'lucide-react';
+import teamImage from '../assets/images/Team.jpeg';
 import './About.css';
 
 const About = () => {
@@ -34,31 +35,32 @@ const About = () => {
         
         <div className="about-content glass-panel">
           <div className="about-left">
-          <div className="quote-box">
-            <p className="quote-text">
-              "The true delight is in the <span className="highlight-text">finding out</span> rather than in the <span className="highlight-text">knowing</span>"
-            </p>
-          </div>
-          
-          <div className="about-text-container">
-            <p>
-              The Robotics Club of CET was founded to foster a culture of advanced technology, serving as a dedicated technical oasis for passionate engineers.
-            </p>
-            <p>
-              Our mission is to augment knowledge in hobby robotics, empowering future generations to accelerate their learning and achieve greater heightsâ€”because "we see further by standing on the shoulders of giants."
-            </p>
-            <p>
-              RoboCET is a collaborative platform to discuss ideas, solve problems, and document our activities. Join us, share your insights, and let's innovate together!
-            </p>
-            <div style={{ marginTop: '30px' }}>
-              <a href="#team" className="btn-primary">Know More About Us</a>
+            <div className="quote-box">
+              <p className="quote-text">
+                "The true delight is in the <span className="highlight-text">finding out</span> rather than in the <span className="highlight-text">knowing</span>"
+              </p>
             </div>
-          </div>
+            
+            <div className="about-text-container">
+              <p>
+                The Robotics Club of CET was founded to foster a culture of advanced technology, serving as a dedicated technical oasis for passionate engineers.
+              </p>
+              <p>
+                Our mission is to augment knowledge in hobby robotics, empowering future generations to accelerate their learning and achieve greater heights—because "we see further by standing on the shoulders of giants."
+              </p>
+              <p>
+                RoboCET is a collaborative platform to discuss ideas, solve problems, and document our activities. Join us, share your insights, and let's innovate together!
+              </p>
+              <div style={{ marginTop: '30px' }}>
+                <a href="#team" className="btn-primary">Know More About Us</a>
+              </div>
+            </div>
           </div>
           
           <div className="about-right">
-            <div className="team-image-placeholder">
-              <span>Team Image Placeholder</span>
+            <div className="about-team-image-container">
+              <img src={teamImage} alt="RoboCET Team" className="about-team-img" />
+              <div className="about-image-gradient"></div>
             </div>
           </div>
         </div>
