@@ -1,115 +1,133 @@
-.contact-wrapper {
-  display: flex;
-  gap: 40px;
-  margin-top: 40px;
+.contact-section {
+  padding-bottom: 80px;
 }
 
-.contact-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.contact-intro {
+  text-align: center;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto 40px auto;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1050px;
+  margin: 0 auto;
 }
 
 .info-box {
-  padding: 30px;
+  padding: 40px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  border-radius: 16px;
+  background-color: #121214;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.info-row {
-  display: flex;
-  gap: 20px;
-}
-
-.info-box.half {
-  flex: 1;
+.info-box:hover, .info-box:active {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .info-icon {
   color: var(--accent-color);
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .info-box h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
 }
 
 .info-box p {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .info-box a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-box a:hover, .info-box a:active {
   color: var(--accent-color);
 }
 
-.contact-form-container {
-  flex: 1;
-  padding: 40px;
-}
-
-.form-header {
-  margin-bottom: 30px;
-}
-
-.form-header h3 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  margin-bottom: 5px;
-}
-
-.form-header p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group.row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 15px;
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent-color);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.form-submit-btn {
+.socials-touch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
   width: 100%;
   margin-top: 10px;
 }
 
-@media (max-width: 992px) {
-  .contact-wrapper {
-    flex-direction: column;
-  }
+.social-touch-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 18px;
+  border-radius: 12px;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.social-touch-box.linkedin:hover, .social-touch-box.linkedin:active {
+  color: #0077b5;
+  border-color: #0077b5;
+  background: rgba(0, 119, 181, 0.1);
+  transform: translateY(-4px);
+}
+
+.social-touch-box.instagram:hover, .social-touch-box.instagram:active {
+  color: #E1306C;
+  border-color: #E1306C;
+  background: rgba(225, 48, 108, 0.1);
+  transform: translateY(-4px);
+}
+
+.social-touch-box.facebook:hover, .social-touch-box.facebook:active {
+  color: #1877F2;
+  border-color: #1877F2;
+  background: rgba(24, 119, 242, 0.1);
+  transform: translateY(-4px);
+}
+
+.social-touch-box.github:hover, .social-touch-box.github:active {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .info-row {
-    flex-direction: column;
+  .contact-intro {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .info-box {
+    padding: 28px 20px;
   }
 }

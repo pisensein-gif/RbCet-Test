@@ -1,5 +1,5 @@
 .modern-footer {
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.8) 0%, rgba(5, 5, 5, 1) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(5, 5, 5, 1) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
@@ -41,20 +41,7 @@
 .footer-logo {
   height: 120px;
   width: auto;
-}
-
-.footer-logo-wrapper h2 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  margin: 0;
-  letter-spacing: 1px;
-}
-
-.footer-description {
-  line-height: 1.6;
-  font-size: 0.95rem;
-  margin: 0;
-  max-width: 350px;
+  object-fit: contain;
 }
 
 .footer-socials {
@@ -76,13 +63,14 @@
   transition: all 0.3s ease;
   font-size: 1.2rem;
   border: 1px solid rgba(255,255,255,0.05);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.footer-socials a:hover {
+.footer-socials a:hover, .footer-socials a:active {
   background: var(--accent-color);
   color: #000;
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
 .footer-links h3, .footer-contact h3 {
@@ -124,7 +112,7 @@
   font-size: 0.95rem;
 }
 
-.footer-links li a:hover {
+.footer-links li a:hover, .footer-links li a:active {
   color: var(--accent-color);
   transform: translateX(5px);
 }
@@ -159,13 +147,13 @@
   transition: color 0.3s ease;
 }
 
-.contact-item a:hover {
+.contact-item a:hover, .contact-item a:active {
   color: var(--accent-color);
 }
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .footer-bottom-content {
@@ -194,20 +182,39 @@
 @media screen and (max-width: 992px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 60px 20px 40px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 20px;
+    gap: 35px;
+    padding: 50px 20px 30px;
+  }
+  
+  .footer-logo {
+    height: 85px;
+  }
+
+  .footer-brand {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-links h3, .footer-contact h3 {
+    margin-bottom: 18px;
   }
   
   .footer-bottom-content {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     text-align: center;
+    padding: 20px;
   }
 }
-

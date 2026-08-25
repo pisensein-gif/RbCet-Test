@@ -11,19 +11,12 @@
 .gallery-item {
   width: 260px;
   height: 320px;
-  margin: -20px -30px; /* Negative margin creates the overlap */
+  margin: -20px -30px;
   position: relative;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s;
   cursor: pointer;
   z-index: 1;
-}
-
-@media (max-width: 768px) {
-  .gallery-item {
-    width: 200px;
-    height: 240px;
-    margin: -15px -20px;
-  }
+  -webkit-tap-highlight-color: transparent;
 }
 
 .photo-frame {
@@ -37,7 +30,7 @@
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Add varied rotations and base z-indexes to make the pile look natural */
+/* Varied rotations */
 .gallery-item:nth-child(1) { z-index: 2; }
 .gallery-item:nth-child(2) { z-index: 3; }
 .gallery-item:nth-child(3) { z-index: 1; }
@@ -54,12 +47,12 @@
 .gallery-item:nth-child(6) .photo-frame { transform: rotate(3deg) translateY(-20px); }
 .gallery-item:nth-child(7) .photo-frame { transform: rotate(-12deg); }
 
-/* When hovered, bring to front, straighten, and scale */
-.gallery-item:hover {
+/* Hover and touch active */
+.gallery-item:hover, .gallery-item:active {
   z-index: 100;
 }
 
-.gallery-item:hover .photo-frame {
+.gallery-item:hover .photo-frame, .gallery-item:active .photo-frame {
   transform: rotate(0deg) scale(1.15) translateY(-10px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
 }
@@ -75,16 +68,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 80px; /* Increased from 20px to move it further right */
+  margin-left: 80px;
   z-index: 10;
-}
-
-@media (max-width: 768px) {
-  .gallery-btn-wrapper {
-    margin-top: 30px;
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
 .view-more-btn {
@@ -92,4 +77,51 @@
   font-size: 1.1rem;
   font-family: var(--font-heading);
   letter-spacing: 1px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile & Tablet Optimizations */
+@media (max-width: 992px) {
+  .gallery-item {
+    width: 220px;
+    height: 270px;
+    margin: -15px -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-collage {
+    padding: 30px 10px;
+  }
+
+  .gallery-item {
+    width: 160px;
+    height: 200px;
+    margin: -10px -15px;
+  }
+
+  .photo-frame {
+    padding: 8px 8px 26px 8px;
+  }
+
+  .gallery-btn-wrapper {
+    margin-top: 35px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .view-more-btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
+    width: 140px;
+    height: 175px;
+    margin: -8px -12px;
+  }
 }

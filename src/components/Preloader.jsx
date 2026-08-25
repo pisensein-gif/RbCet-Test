@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import heroVideo from '../assets/videos/Hero2.mp4';
+import heroVideoMob from '../assets/videos/Hero_mob.mp4';
 import './Preloader.css';
 
 const Preloader = ({ onComplete }) => {
@@ -9,13 +10,18 @@ const Preloader = ({ onComplete }) => {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const heroVideoRef = useRef(null);
 
+  // Detect mobile or desktop screen
+  const targetHeroVideo = typeof window !== 'undefined' && window.innerWidth <= 768 
+    ? heroVideoMob 
+    : heroVideo;
+
   // Guarantee preloader displays cleanly for at least 1.5s
   useEffect(() => {
     const timer = setTimeout(() => {
       setMinTimeElapsed(true);
     }, 1500);
 
-    // Safety fallback: maximum 10s timeout in case of network stall
+    // Safety fallback: maximum 10s timeout in case of slow mobile network
     const fallbackTimer = setTimeout(() => {
       setIsHeroReady(true);
       setMinTimeElapsed(true);
@@ -34,7 +40,7 @@ const Preloader = ({ onComplete }) => {
     }
   }, []);
 
-  // When BOTH the Hero video is buffered/ready AND min time has passed, complete preloading
+  // When BOTH the target Hero video is buffered AND min time has passed, complete preloading
   useEffect(() => {
     if (isHeroReady && minTimeElapsed && isPlaying) {
       const exitTimer = setTimeout(() => {
@@ -71,10 +77,10 @@ const Preloader = ({ onComplete }) => {
             playsInline
           />
 
-          {/* Hidden Hero Video Preloader to preload into browser cache */}
+          {/* Hidden Hero Video Preloader to preload exact device video into browser cache */}
           <video
             ref={heroVideoRef}
-            src={heroVideo}
+            src={targetHeroVideo}
             preload="auto"
             muted
             playsInline
