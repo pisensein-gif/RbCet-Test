@@ -39,6 +39,7 @@ const AdminCategory = () => {
   useEffect(() => {
     fetchEvents();
     setIsControlPanelOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 
   const fetchEvents = async () => {
@@ -703,3 +704,4 @@ const AdminCategory = () => {
 };
 
 export default AdminCategory;
+

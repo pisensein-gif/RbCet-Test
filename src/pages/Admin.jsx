@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Admin.css';
 import '../components/Events.css'; // Reuse the beautiful card styles
@@ -87,3 +87,4 @@ const Admin = () => {
 };
 
 export default Admin;
+
