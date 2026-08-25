@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroVideo from '../assets/videos/Hero2.mp4';
+import heroVideo from '../assets/videos/Hero3.mp4';
 import heroVideoMob from '../assets/videos/Hero_mob.mp4';
 import './Preloader.css';
 
@@ -110,3 +110,4 @@ const Preloader = ({ onComplete }) => {
 };
 
 export default Preloader;
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Network, Crosshair, Cpu } from 'lucide-react';
 import teamImage from '../assets/images/Team.jpeg';
@@ -56,7 +57,7 @@ const About = () => {
                 RoboCET is a collaborative platform to discuss ideas, solve problems, and document our activities. Join us, share your insights, and let's innovate together!
               </p>
               <div style={{ marginTop: '15px' }}>
-                <a href="#team" className="btn-primary">Know More About Us</a>
+                <Link to="/know-more" className="btn-primary">Know More About Us</Link>
               </div>
             </div>
           </div>
@@ -122,3 +123,4 @@ const About = () => {
 };
 
 export default About;
+

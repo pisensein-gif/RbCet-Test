@@ -29,7 +29,16 @@ const Contact = () => {
           >
             <MapPin className="info-icon" size={36} />
             <h3>Our Address</h3>
-            <p>RoboCET, College of Engineering Trivandrum<br/>Sreekaryam, Thiruvananthapuram - 695016</p>
+            <p>
+              <a 
+                href="https://share.google/d1dlYjJZevE9AElHZ" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                RoboCET, College of Engineering Trivandrum<br/>Sreekaryam, Thiruvananthapuram - 695016
+              </a>
+            </p>
           </motion.div>
           
           <motion.div 
@@ -41,7 +50,14 @@ const Contact = () => {
           >
             <Mail className="info-icon" size={36} />
             <h3>Email Us</h3>
-            <p><a href="mailto:teamrobocet@gmail.com">teamrobocet@gmail.com</a></p>
+            <p>
+              <a 
+                href="mailto:teamrobocet@gmail.com"
+                className="contact-link"
+              >
+                teamrobocet@gmail.com
+              </a>
+            </p>
           </motion.div>
           
           <motion.div 

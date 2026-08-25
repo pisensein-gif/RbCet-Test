@@ -39,9 +39,10 @@
 }
 
 .footer-logo {
-  height: 120px;
+  height: 160px;
   width: auto;
   object-fit: contain;
+  filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.1));
 }
 
 .footer-socials {
@@ -175,7 +176,21 @@
 }
 
 .designed-by {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.5);
+}
+
+.developer-credit-link {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.developer-credit-link:hover, .developer-credit-link:active {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  text-decoration: underline;
 }
 
 /* Responsive Design */
@@ -195,7 +210,7 @@
   }
   
   .footer-logo {
-    height: 85px;
+    height: 110px;
   }
 
   .footer-brand {

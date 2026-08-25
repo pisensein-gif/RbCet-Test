@@ -16,7 +16,6 @@ const Footer = () => {
         <div className="footer-brand">
           <div className="footer-logo-wrapper">
             <img src={logo} alt="RoboCET Logo" className="footer-logo" />
-            
           </div>
           
           <div className="footer-socials">
@@ -39,14 +38,15 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Categories Section */}
+        {/* Categories Section - Connected to Event Hub */}
         <div className="footer-links">
           <h3>Explore</h3>
           <ul>
-            <li><Link to="/category/workshops"><ChevronRight size={14}/> Workshops</Link></li>
-            <li><Link to="/category/competitions"><ChevronRight size={14}/> Competitions</Link></li>
-            <li><Link to="/category/exhibitions"><ChevronRight size={14}/> Exhibitions</Link></li>
-            <li><Link to="/admin"><ChevronRight size={14}/> Admin Portal</Link></li>
+            <li><Link to="/events/workshop"><ChevronRight size={14}/> Workshops</Link></li>
+            <li><Link to="/events/competition"><ChevronRight size={14}/> Competitions</Link></li>
+            <li><Link to="/events/project"><ChevronRight size={14}/> Projects</Link></li>
+            <li><Link to="/events/article"><ChevronRight size={14}/> Articles</Link></li>
+            <li><Link to="/events/talk-sessions"><ChevronRight size={14}/> Talk Sessions</Link></li>
           </ul>
         </div>
 
@@ -55,7 +55,15 @@ const Footer = () => {
           <h3>Contact Us</h3>
           <div className="contact-item">
             <MapPin size={18} className="contact-icon" />
-            <p>College of Engineering Trivandrum<br/>Sreekaryam, Thiruvananthapuram</p>
+            <p>
+              <a 
+                href="https://share.google/d1dlYjJZevE9AElHZ" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                College of Engineering Trivandrum<br/>Sreekaryam, Thiruvananthapuram
+              </a>
+            </p>
           </div>
           <div className="contact-item">
             <Mail size={18} className="contact-icon" />
@@ -68,7 +76,9 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-bottom-content">
           <p>&copy; {new Date().getFullYear()} <strong>RoboCET</strong>. All Rights Reserved.</p>
-          <p className="designed-by">Designed & Built by RoboCET Tech Team</p>
+          <p className="designed-by">
+            Designed & Built by <a href="https://www.instagram.com/abhi_sheiik_/?hl=en" target="_blank" rel="noopener noreferrer" className="developer-credit-link">Abhishek</a>
+          </p>
         </div>
       </div>
     </footer>
@@ -76,4 +86,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

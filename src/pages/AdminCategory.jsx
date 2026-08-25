@@ -326,7 +326,7 @@ const AdminCategory = () => {
             </div>
             <div className="card-info">
               <h3>{event.title}</h3>
-              <p>{new Date(event.date).toLocaleDateString()}</p>
+              <p>{new Date(event.date).toLocaleDateString('en-IN')}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
                 <span className="mini-status">{event.status || 'Registration Open'}</span>
                 <span className="settings-link"><Settings size={16}/> Manage</span>
@@ -704,4 +704,5 @@ const AdminCategory = () => {
 };
 
 export default AdminCategory;
+
 

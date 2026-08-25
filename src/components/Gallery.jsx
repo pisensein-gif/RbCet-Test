@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Gallery.css';
 
@@ -12,7 +13,20 @@ import img7 from '../assets/gallery/7.webp';
 
 const images = [img1, img2, img3, img4, img5, img6, img7];
 
+// Natural scatter rotations and base stacking
+const photoConfigs = [
+  { rotate: -8, y: 0, z: 2 },
+  { rotate: 5, y: 20, z: 3 },
+  { rotate: -4, y: -10, z: 1 },
+  { rotate: 10, y: 0, z: 4 },
+  { rotate: -6, y: 15, z: 2 },
+  { rotate: 3, y: -20, z: 5 },
+  { rotate: -12, y: 0, z: 3 }
+];
+
 const Gallery = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <section id="gallery" className="section-container">
       <motion.div
@@ -23,32 +37,48 @@ const Gallery = () => {
       >
         <h2 className="section-title">Gallery</h2>
         
-        <div className="gallery-collage">
-          {images.map((src, index) => (
-            <motion.div
-              key={index}
-              className={`gallery-item item-${index + 1}`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-            >
-              <div className="photo-frame">
-                <img src={src} alt={`Gallery ${index + 1}`} />
-              </div>
-            </motion.div>
-          ))}
+        <div className="gallery-collage" onMouseLeave={() => setHoveredIndex(null)}>
+          {images.map((src, index) => {
+            const isHovered = hoveredIndex === index;
+            const config = photoConfigs[index] || { rotate: 0, y: 0, z: 1 };
+            
+            return (
+              <motion.div
+                key={index}
+                className="gallery-item"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                style={{
+                  zIndex: isHovered ? 50 : config.z
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                animate={{
+                  scale: isHovered ? 1.18 : 1,
+                  y: isHovered ? -15 : config.y,
+                  rotate: isHovered ? 0 : config.rotate
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
+                }}
+              >
+                <div className={`photo-frame ${isHovered ? 'elevated' : ''}`}>
+                  <img src={src} alt={`RoboCET Gallery ${index + 1}`} />
+                </div>
+              </motion.div>
+            );
+          })}
           
           <div className="gallery-btn-wrapper">
-            <motion.a 
-              href="#" 
+            <Link 
+              to="/gallery" 
               className="btn-primary view-more-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               View More
-            </motion.a>
+            </Link>
           </div>
         </div>
       </motion.div>

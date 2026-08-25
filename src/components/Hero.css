@@ -39,7 +39,7 @@
 
 .hero-video-mobile {
   display: none;
-  object-position: center center;
+  object-position: center 35%;
 }
 
 @media (max-width: 768px) {
@@ -51,3 +51,4 @@
     display: block;
   }
 }
+

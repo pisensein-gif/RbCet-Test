@@ -50,7 +50,7 @@ const CategoryPage = () => {
     <div className="category-page">
       <div className="category-header">
         <Link to="/" className="back-link">
-          <ArrowLeft size={20} /> Back to Home
+          <ArrowLeft size={18} /> Back to Home
         </Link>
         <motion.h1 
           className="category-title"
@@ -110,7 +110,7 @@ const CategoryPage = () => {
           ) : (
             <motion.div 
               key="grid"
-              className="events-grid"
+              className="events-grid-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
@@ -125,52 +125,47 @@ const CategoryPage = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0, 255, 204, 0.1)" }}
-                    style={{ padding: 0, overflow: 'hidden' }}
+                    whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(255, 255, 255, 0.1)" }}
+                    style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                   >
-                    <div className="public-card-image" style={{ width: '100%', height: '200px', background: '#111', position: 'relative' }}>
+                    <div className="public-card-image">
                       {evt.imageUrl ? (
-                        <img src={evt.imageUrl} alt={evt.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={evt.imageUrl} alt={evt.title} />
                       ) : (
-                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#555' }}>No Image</div>
+                        <div className="no-image">No Image</div>
                       )}
                       
                       {!isOpen && (
-                        <div style={{
-                          position: 'absolute', top: 10, right: 10, 
-                          background: isFinished ? 'rgba(0,0,0,0.8)' : 'rgba(255,50,50,0.8)',
-                          color: 'white', padding: '4px 12px', borderRadius: '20px',
-                          fontSize: '0.8rem', fontWeight: 'bold', backdropFilter: 'blur(4px)'
-                        }}>
+                        <div className={`event-status-badge ${isFinished ? 'finished' : 'closed'}`}>
                           {evt.status}
                         </div>
                       )}
                     </div>
                     
-                    <div className="event-content" style={{ padding: '20px' }}>
-                      <h3 className="event-title" style={{ margin: '0 0 10px 0' }}>{evt.title}</h3>
-                      <div className="event-meta" style={{ marginBottom: '20px' }}>
-                        <div className="meta-item">
+                    <div className="event-content" style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                      <h3 className="event-title" style={{ margin: '0 0 10px 0', fontSize: '1.4rem' }}>{evt.title}</h3>
+                      <div className="event-meta" style={{ marginBottom: '20px', flex: 1 }}>
+                        <div className="meta-item" style={{ color: 'rgba(255, 255, 255, 0.6)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                           <Calendar size={18} className="meta-icon" />
-                          <span>{new Date(evt.date).toLocaleDateString()}</span>
+                          <span>{new Date(evt.date).toLocaleDateString('en-IN')}</span>
                         </div>
                       </div>
                       
                       {isOpen ? (
                         evt.externalLink ? (
-                          <a href={evt.externalLink} target="_blank" rel="noreferrer" className="btn-primary event-btn glow-btn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block' }}>
+                          <a href={evt.externalLink} target="_blank" rel="noreferrer" className="btn-primary event-btn glow-btn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block', width: '100%' }}>
                             Register Now
                           </a>
                         ) : (
-                          <Link to={`/register/${evt.id}`} className="btn-primary event-btn glow-btn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block' }}>
+                          <Link to={`/register/${evt.id}`} className="btn-primary event-btn glow-btn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block', width: '100%' }}>
                             Register Now
                           </Link>
                         )
                       ) : (
-                        <button className="btn-outline event-btn" disabled style={{ width: '100%', opacity: 0.5, cursor: 'not-allowed' }}>
-                          <Info size={16} style={{marginRight: '8px', verticalAlign: 'middle'}}/>
+                        <div className="event-btn-disabled">
+                          <Info size={16} style={{marginRight: '8px'}}/>
                           {evt.status}
-                        </button>
+                        </div>
                       )}
                     </div>
                   </motion.div>
@@ -185,4 +180,5 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
+
 

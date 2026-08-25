@@ -1,0 +1,130 @@
+.know-more-page {
+  min-height: 90vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.know-more-header {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px 24px 0;
+  display: flex;
+  align-items: center;
+}
+
+.know-more-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 20px 80px;
+}
+
+.know-more-card {
+  max-width: 620px;
+  width: 100%;
+  padding: 60px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background: rgba(14, 14, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-glow-wrapper {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.know-more-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+.loading-text-container {
+  margin-bottom: 25px;
+}
+
+.history-loading-title {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #ffffff 30%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dots-pulse {
+  display: inline-block;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  animation: blinkDots 1.5s infinite;
+}
+
+@keyframes blinkDots {
+  0%, 20% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.history-subtitle {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Progress bar track */
+.history-progress-track {
+  width: 100%;
+  max-width: 320px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0 20px;
+}
+
+.history-progress-bar {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  box-shadow: 0 0 10px #ffffff;
+  position: absolute;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .know-more-card {
+    padding: 40px 20px;
+  }
+
+  .know-more-logo {
+    height: 90px;
+  }
+
+  .history-loading-title {
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+  }
+
+  .history-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+  }
+}

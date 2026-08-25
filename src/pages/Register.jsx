@@ -160,7 +160,7 @@ const Register = () => {
         <div className="register-card error-card">
           <h2>Oops!</h2>
           <p>{error}</p>
-          <Link to="/" className="btn-primary">Return to Home</Link>
+          <Link to="/" className="btn-primary" style={{marginTop:'15px', display:'inline-block'}}>Return to Home</Link>
         </div>
       </div>
     );
@@ -172,7 +172,7 @@ const Register = () => {
         <div className="register-card error-card">
           <h2>Registration Closed</h2>
           <p>Sorry, the registration for {event.title} is currently closed.</p>
-          <Link to="/" className="btn-primary">Return to Home</Link>
+          <Link to="/" className="btn-primary" style={{marginTop:'15px', display:'inline-block'}}>Return to Home</Link>
         </div>
       </div>
     );
@@ -183,7 +183,7 @@ const Register = () => {
       <div className="register-card">
         <div className="register-header">
           <h1>{event.title}</h1>
-          <p className="event-date">Date: {new Date(event.date).toLocaleDateString()}</p>
+          <p className="event-date">Date: {new Date(event.date).toLocaleDateString('en-IN')}</p>
           {event.description && <p className="event-desc">{event.description}</p>}
         </div>
 
@@ -192,7 +192,7 @@ const Register = () => {
             <div className="success-icon">?</div>
             <h2>Registration Successful!</h2>
             <p>Thank you for registering for {event.title}. We look forward to seeing you there!</p>
-            <Link to="/" className="btn-outline">Return to Home</Link>
+            <Link to="/" className="btn-outline glow-btn" style={{marginTop:'15px'}}>Return to Home</Link>
           </div>
         ) : (
           <form className="register-form" onSubmit={handleSubmit}>
@@ -222,7 +222,6 @@ const Register = () => {
                     <img src={field.imageUrl} alt={field.label || "Form graphic"} style={{maxWidth: '100%', maxHeight: '400px', borderRadius: '8px'}} />
                   </div>
                 )}
-
 
                 {/* DATA COLLECTION INPUTS */}
                 {field.type !== 'checkbox' && field.type !== 'header' && field.type !== 'display_image' && (
@@ -281,7 +280,7 @@ const Register = () => {
             ))}
 
             {event.formFields && event.formFields.length > 0 && (
-              <button type="submit" className="btn-primary submit-btn" disabled={submitting} style={{marginTop:'10px'}}>
+              <button type="submit" className="btn-primary submit-btn glow-btn" disabled={submitting} style={{marginTop:'10px'}}>
                 {submitting ? 'Uploading & Submitting...' : 'Register Now'}
               </button>
             )}

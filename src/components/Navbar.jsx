@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ArrowLeft, LogOut } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isAdminOrRegisterPage = location.pathname.startsWith('/admin') || location.pathname.startsWith('/register');
+  const isSubAdminPage = location.pathname.startsWith('/admin/') && location.pathname !== '/admin' && location.pathname !== '/admin-login';
+  const isAdminPortal = location.pathname.startsWith('/admin') && location.pathname !== '/admin-login';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +27,15 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/admin-login');
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/#home' },
@@ -53,8 +67,16 @@ const Navbar = () => {
 
         {/* Right Actions */}
         <div className="navbar-right">
+          {isAdminPortal && auth.currentUser && (
+            <button onClick={handleLogout} className="btn-outline small" style={{marginRight: '15px', display: 'flex', alignItems: 'center', gap: '5px'}}>
+              <LogOut size={16} /> Logout
+            </button>
+          )}
+
           {isAdminOrRegisterPage ? (
-            <Link to="/" className="btn-outline sponsor-btn" style={{ textDecoration: 'none' }}>Go back to home</Link>
+            <Link to={isSubAdminPage ? "/admin" : "/"} className="nav-back-link">
+              <ArrowLeft size={16} /> {isSubAdminPage ? "Back to Admin Hub" : "Back to Home"}
+            </Link>
           ) : (
             <button className="btn-primary sponsor-btn">Sponsor US</button>
           )}
