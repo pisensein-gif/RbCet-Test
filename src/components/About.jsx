@@ -28,43 +28,49 @@ const About = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.8 }}
       >
         <h2 className="section-title">About Us</h2>
         
-        <div className="about-content glass-panel">
-          <div className="about-left">
-            <div className="quote-box">
-              <p className="quote-text">
-                "The true delight is in the <span className="highlight-text">finding out</span> rather than in the <span className="highlight-text">knowing</span>"
+        <div className="about-main-container glass-panel">
+          
+          {/* Top: Quote & Story Section */}
+          <div className="about-intro-grid">
+            <div className="about-intro-left">
+              <div className="quote-box">
+                <p className="quote-text">
+                  "The true delight is in the <span className="highlight-text">finding out</span> rather than in the <span className="highlight-text">knowing</span>"
+                </p>
+              </div>
+              <p className="about-lead-text">
+                The Robotics Club of CET was founded to foster a culture of advanced technology, serving as a dedicated technical oasis for passionate engineers.
               </p>
             </div>
             
-            <div className="about-text-container">
+            <div className="about-intro-right">
               <p>
-                The Robotics Club of CET was founded to foster a culture of advanced technology, serving as a dedicated technical oasis for passionate engineers.
-              </p>
-              <p>
-                Our mission is to augment knowledge in hobby robotics, empowering future generations to accelerate their learning and achieve greater heights—because "we see further by standing on the shoulders of giants."
+                Our mission is to augment knowledge in hobby robotics, empowering future generations to accelerate their learning and achieve greater heights—because <em>"we see further by standing on the shoulders of giants."</em>
               </p>
               <p>
                 RoboCET is a collaborative platform to discuss ideas, solve problems, and document our activities. Join us, share your insights, and let's innovate together!
               </p>
-              <div style={{ marginTop: '30px' }}>
+              <div style={{ marginTop: '15px' }}>
                 <a href="#team" className="btn-primary">Know More About Us</a>
               </div>
             </div>
           </div>
-          
-          <div className="about-right">
-            <div className="about-team-image-container">
-              <img src={teamImage} alt="RoboCET Team" className="about-team-img" />
-              <div className="about-image-gradient"></div>
+
+          {/* Full Panoramic Team Photo Showcase (100% Complete View) */}
+          <div className="about-team-showcase">
+            <div className="team-photo-frame">
+              <img src={teamImage} alt="Team RoboCET" className="about-team-photo" />
             </div>
           </div>
+
         </div>
 
+        {/* Our Vision Section */}
         <h3 className="vision-subtitle">Our Vision</h3>
         <div className="vision-grid">
           {visions.map((vision, index) => (
