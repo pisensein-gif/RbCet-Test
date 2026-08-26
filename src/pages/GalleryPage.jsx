@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
@@ -78,10 +78,26 @@ const GalleryPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
+  
+  const location = useLocation();
 
   useEffect(() => {
     fetchAlbums();
   }, []);
+
+  useEffect(() => {
+    // If albums are loaded and there's a URL parameter ?albumId=xyz, open it automatically
+    if (albums.length > 0) {
+      const searchParams = new URLSearchParams(location.search);
+      const linkedAlbumId = searchParams.get('albumId');
+      if (linkedAlbumId) {
+        const foundAlbum = albums.find(a => a.id === linkedAlbumId);
+        if (foundAlbum && foundAlbum.images?.length > 0) {
+          setSelectedAlbum(foundAlbum);
+        }
+      }
+    }
+  }, [albums, location.search]);
 
   const fetchAlbums = async () => {
     setLoading(true);
@@ -195,7 +211,6 @@ const GalleryPage = () => {
         </AnimatePresence>
       </div>
 
-      {/* Lightbox Modal with Slideshow */}
       <AnimatePresence>
         {selectedAlbum && (
           <motion.div 

@@ -5,7 +5,7 @@ import { ArrowLeft, Calendar, Info } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import './CategoryPage.css';
-import logo from '../assets/robocet.png';
+import logo from '../assets/images/robocet.webp';
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
@@ -116,7 +116,7 @@ const CategoryPage = () => {
             >
               {events.map((evt, index) => {
                 const isOpen = !evt.status || evt.status === "Registration Open";
-                const isFinished = evt.status === "Workshop Finished";
+                const isFinished = evt.status === "Workshop Finished" || evt.status === "Registration Closed";
                 
                 return (
                   <motion.div 
@@ -136,7 +136,7 @@ const CategoryPage = () => {
                       )}
                       
                       {!isOpen && (
-                        <div className={`event-status-badge ${isFinished ? 'finished' : 'closed'}`}>
+                        <div className={`event-status-badge ${evt.status === "Workshop Finished" ? 'finished' : 'closed'}`}>
                           {evt.status}
                         </div>
                       )}
@@ -161,6 +161,10 @@ const CategoryPage = () => {
                             Register Now
                           </Link>
                         )
+                      ) : evt.linkedGalleryId ? (
+                        <Link to={`/gallery?albumId=${evt.linkedGalleryId}`} className="btn-primary event-btn glow-btn" style={{ textDecoration: 'none', textAlign: 'center', display: 'block', width: '100%', background: 'linear-gradient(45deg, #00ffcc, #0088cc)', color: '#000', border: 'none' }}>
+                          View Event Gallery
+                        </Link>
                       ) : (
                         <div className="event-btn-disabled">
                           <Info size={16} style={{marginRight: '8px'}}/>
@@ -180,6 +184,3 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
-
-
-

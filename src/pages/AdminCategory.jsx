@@ -10,21 +10,18 @@ const AdminCategory = () => {
   const { categoryId } = useParams();
   
   const [events, setEvents] = useState([]);
+  const [albums, setAlbums] = useState([]);
   
-  // Modals
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isControlPanelOpen, setIsControlPanelOpen] = useState(false);
   const [isFormBuilderOpen, setIsFormBuilderOpen] = useState(false);
   
-  // Create State
   const [newEvent, setNewEvent] = useState({ title: '', date: '', externalLink: '' });
   const [imageFile, setImageFile] = useState(null);
   
-  // Control Panel State
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [registrations, setRegistrations] = useState([]);
   
-  // Form Builder State
   const [builderFields, setBuilderFields] = useState([]);
   const [newField, setNewField] = useState({ label: '', type: 'text', required: true, options: [], description: '', imageUrl: '' });
   const [newOption, setNewOption] = useState('');
@@ -38,8 +35,8 @@ const AdminCategory = () => {
 
   useEffect(() => {
     fetchEvents();
+    fetchAlbums();
     setIsControlPanelOpen(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 
   const fetchEvents = async () => {
@@ -53,6 +50,17 @@ const AdminCategory = () => {
       setError(err.message);
     }
     setLoading(false);
+  };
+
+  const fetchAlbums = async () => {
+    try {
+      const q = query(collection(db, "gallery_albums"));
+      const querySnapshot = await getDocs(q);
+      const albumData = querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setAlbums(albumData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleImageChange = (e) => {
@@ -90,6 +98,7 @@ const AdminCategory = () => {
         categoryId: categoryId,
         isPublished: false,
         status: "Registration Open",
+        linkedGalleryId: "",
         formFields: [], 
         createdAt: serverTimestamp()
       };
@@ -149,7 +158,6 @@ const AdminCategory = () => {
     }
   };
 
-  // Registration Deletion
   const handleDeleteRegistration = async (regId) => {
     if (window.confirm("Delete this single registration? Firebase data will be removed. Associated Cloudinary files will remain orphaned.")) {
       try {
@@ -173,18 +181,12 @@ const AdminCategory = () => {
     }
   };
 
-  // Export to CSV
   const exportToCSV = () => {
     if (registrations.length === 0) return;
-
-    // 1. Get Headers
     const inputFields = (selectedEvent?.formFields || []).filter(f => f.type !== 'header' && f.type !== 'display_image');
     const headers = inputFields.map(f => f.label);
-    
-    // 2. Map Rows
     const csvRows = [];
     csvRows.push(headers.map(header => `"${header.replace(/"/g, '""')}"`).join(','));
-
     registrations.forEach(reg => {
       const row = inputFields.map(f => {
         let val = reg[f.id] || '';
@@ -195,11 +197,9 @@ const AdminCategory = () => {
       });
       csvRows.push(row.join(','));
     });
-
     const csvContent = csvRows.join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
-    
     const link = document.createElement('a');
     link.href = url;
     link.setAttribute('download', `${selectedEvent.title.replace(/\s+/g, '_')}_Registrations.csv`);
@@ -208,7 +208,6 @@ const AdminCategory = () => {
     document.body.removeChild(link);
   };
 
-  // Form Builder Handlers
   const openFormBuilder = () => {
     setBuilderFields(selectedEvent.formFields || []);
     setIsFormBuilderOpen(true);
@@ -346,7 +345,6 @@ const AdminCategory = () => {
         </motion.div>
       </div>
 
-      {/* Control Panel Modal */}
       <AnimatePresence>
         {isControlPanelOpen && selectedEvent && !isFormBuilderOpen && (
           <motion.div 
@@ -379,7 +377,7 @@ const AdminCategory = () => {
                 )}
               </div>
 
-              <div className="cp-settings-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+              <div className="cp-settings-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                 <div className="setting-box">
                   <h3>Visibility</h3>
                   <div className="toggle-wrapper">
@@ -405,9 +403,23 @@ const AdminCategory = () => {
                     <option value="Workshop Finished">Workshop Finished</option>
                   </select>
                 </div>
+
+                <div className="setting-box">
+                  <h3>Linked Gallery</h3>
+                  <select 
+                    className="status-dropdown"
+                    value={selectedEvent.linkedGalleryId || ''}
+                    onChange={(e) => updateEventSetting('linkedGalleryId', e.target.value)}
+                  >
+                    <option value="">No Linked Slideshow</option>
+                    {albums.map(al => (
+                      <option key={al.id} value={al.id}>{al.title} ({new Date(al.date).toLocaleDateString('en-IN')})</option>
+                    ))}
+                  </select>
+                </div>
                 
                 <div className="setting-box">
-                  <h3>External Reg Link (Optional)</h3>
+                  <h3>External Reg Link</h3>
                   <input 
                     type="url" 
                     placeholder="https://google.com/forms..."
@@ -419,7 +431,6 @@ const AdminCategory = () => {
                 </div>
               </div>
 
-              {/* Registrations List */}
               <div className="registrations-section" style={{ marginTop: '30px' }}>
                 {selectedEvent.externalLink ? (
                   <div style={{textAlign: 'center', padding: '40px', background: 'rgba(0,0,0,0.2)', borderRadius: '10px'}}>
@@ -485,7 +496,6 @@ const AdminCategory = () => {
         )}
       </AnimatePresence>
 
-      {/* Form Builder Modal */}
       <AnimatePresence>
         {isFormBuilderOpen && (
           <motion.div 
@@ -510,7 +520,6 @@ const AdminCategory = () => {
 
               <div className="form-builder-body" style={{display:'flex', gap:'30px'}}>
                 
-                {/* Left Side: Live Preview / Field List */}
                 <div className="form-preview" style={{flex: 1}}>
                   <h3>Form Layout</h3>
                   {builderFields.length === 0 && (
@@ -536,7 +545,6 @@ const AdminCategory = () => {
                   </div>
                 </div>
 
-                {/* Right Side: Add Field Tools */}
                 <div className="add-field-panel" style={{flex: 1, background:'rgba(0,0,0,0.2)', padding:'20px', borderRadius:'12px', border:'1px solid rgba(255,255,255,0.05)'}}>
                   <h3>Add Form Element</h3>
                   <div className="form-group" style={{marginTop:'15px'}}>
@@ -644,7 +652,6 @@ const AdminCategory = () => {
         )}
       </AnimatePresence>
 
-      {/* Create Event Modal */}
       <AnimatePresence>
         {isCreateModalOpen && (
           <motion.div 
@@ -704,6 +711,3 @@ const AdminCategory = () => {
 };
 
 export default AdminCategory;
-
-
-
