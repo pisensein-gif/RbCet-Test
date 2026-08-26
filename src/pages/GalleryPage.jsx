@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { ArrowLeft, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
 import { db } from '../firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
@@ -9,6 +9,7 @@ import './GalleryPage.css';
 
 const AutoSlideshow = ({ images, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (!images || images.length <= 1) return;
@@ -18,12 +19,27 @@ const AutoSlideshow = ({ images, title }) => {
     return () => clearInterval(interval);
   }, [images]);
 
+  const handleManualChange = (e, direction) => {
+    e.stopPropagation(); // prevent clicking the card/lightbox when clicking arrows
+    if (!images || images.length <= 1) return;
+    setCurrentIndex((prev) => {
+      const nextIndex = prev + direction;
+      if (nextIndex < 0) return images.length - 1;
+      if (nextIndex >= images.length) return 0;
+      return nextIndex;
+    });
+  };
+
   if (!images || images.length === 0) {
     return <div className="no-image" style={{display:'flex', alignItems:'center', justifyContent:'center', height:'100%', color:'rgba(255,255,255,0.5)'}}>No Images</div>;
   }
 
   return (
-    <div style={{width: '100%', height: '100%', position: 'relative'}}>
+    <div 
+      style={{width: '100%', height: '100%', position: 'relative'}}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <AnimatePresence initial={false}>
         <motion.img
           key={currentIndex}
@@ -36,6 +52,23 @@ const AutoSlideshow = ({ images, title }) => {
           style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover'}}
         />
       </AnimatePresence>
+
+      {images.length > 1 && isHovered && (
+        <>
+          <button 
+            onClick={(e) => handleManualChange(e, -1)}
+            style={{position:'absolute', left:'10px', top:'50%', transform:'translateY(-50%)', zIndex:20, background:'rgba(0,0,0,0.6)', border:'1px solid rgba(255,255,255,0.2)', color:'white', padding:'8px', borderRadius:'50%', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center'}}
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button 
+            onClick={(e) => handleManualChange(e, 1)}
+            style={{position:'absolute', right:'10px', top:'50%', transform:'translateY(-50%)', zIndex:20, background:'rgba(0,0,0,0.6)', border:'1px solid rgba(255,255,255,0.2)', color:'white', padding:'8px', borderRadius:'50%', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center'}}
+          >
+            <ChevronRight size={24} />
+          </button>
+        </>
+      )}
     </div>
   );
 };
