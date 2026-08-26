@@ -47,7 +47,7 @@ const AdminCategory = () => {
     try {
       const q = query(collection(db, "events"), where("categoryId", "==", categoryId));
       const querySnapshot = await getDocs(q);
-      const eventsData = querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds);
+      const eventsData = querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setEvents(eventsData);
     } catch (err) {
       setError(err.message);
@@ -121,7 +121,7 @@ const AdminCategory = () => {
     try {
       const q = query(collection(db, "registrations"), where("eventId", "==", eventId));
       const querySnapshot = await getDocs(q);
-      const regData = querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds);
+      const regData = querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setRegistrations(regData);
     } catch (err) {
       console.error(err);
@@ -704,5 +704,6 @@ const AdminCategory = () => {
 };
 
 export default AdminCategory;
+
 
 

@@ -29,7 +29,7 @@ const CategoryPage = () => {
         const eventsData = querySnapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))
           .filter(evt => evt.isPublished === true)
-          .sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds);
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         
         setEvents(eventsData);
       } catch (err) {
@@ -180,5 +180,6 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
+
 
 
