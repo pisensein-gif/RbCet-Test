@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import Admin from './pages/Admin';
 import AdminCategory from './pages/AdminCategory';
+import AdminGallery from './pages/AdminGallery';
 import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -41,6 +42,11 @@ function App() {
                   <Admin />
                 </ProtectedRoute>
               } />
+              <Route path="/admin/gallery" element={
+                <ProtectedRoute>
+                  <AdminGallery />
+                </ProtectedRoute>
+              } />
               <Route path="/admin/:categoryId" element={
                 <ProtectedRoute>
                   <AdminCategory />
@@ -56,4 +62,5 @@ function App() {
 }
 
 export default App;
+
 

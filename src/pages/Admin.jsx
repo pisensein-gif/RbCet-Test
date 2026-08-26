@@ -38,12 +38,18 @@ const Admin = () => {
       title: "Talk Sessions",
       description: "Manage guest lectures and industry panels.",
       image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "gallery",
+      title: "Gallery",
+      description: "Manage public photo repository.",
+      image: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&w=800&q=80",
     }
   ];
 
   return (
     <div className="admin-dashboard">
-            <div className="admin-header" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '20px'}}>
+      <div className="admin-header" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '20px'}}>
         <Link to="/" className="back-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
           Back to Home
@@ -91,5 +97,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
-
