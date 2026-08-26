@@ -116,7 +116,6 @@ const CategoryPage = () => {
             >
               {events.map((evt, index) => {
                 const isOpen = !evt.status || evt.status === "Registration Open";
-                const isFinished = evt.status === "Workshop Finished" || evt.status === "Registration Closed";
                 
                 return (
                   <motion.div 
@@ -184,3 +183,4 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
+
