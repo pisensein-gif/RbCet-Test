@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Plus, Trash2, X } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, addDoc, getDocs, deleteDoc, updateDoc, doc, serverTimestamp, query } from 'firebase/firestore';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -126,6 +126,26 @@ const AdminGallery = () => {
     }
   };
 
+  const handleMoveSlide = async (index, direction) => {
+    if (!selectedAlbum || !selectedAlbum.images) return;
+    const newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= selectedAlbum.images.length) return;
+
+    const updatedImages = [...selectedAlbum.images];
+    const temp = updatedImages[index];
+    updatedImages[index] = updatedImages[newIndex];
+    updatedImages[newIndex] = temp;
+
+    try {
+      await updateDoc(doc(db, "gallery_albums", selectedAlbum.id), { images: updatedImages });
+      const updatedAlbum = { ...selectedAlbum, images: updatedImages };
+      setSelectedAlbum(updatedAlbum);
+      setAlbums(albums.map(a => a.id === selectedAlbum.id ? updatedAlbum : a));
+    } catch (err) {
+      alert("Error reordering slides: " + err.message);
+    }
+  };
+
   return (
     <div className="admin-gallery-page">
       <div className="admin-header">
@@ -226,12 +246,36 @@ const AdminGallery = () => {
                   selectedAlbum.images.map((imgUrl, i) => (
                     <div key={i} style={{position: 'relative', aspectRatio: '4/3', borderRadius: '8px', overflow: 'hidden', background:'#000'}}>
                       <img src={imgUrl} alt={`Slide ${i}`} style={{width:'100%', height:'100%', objectFit:'contain'}} />
-                      <button 
-                        onClick={() => handleRemoveImageFromAlbum(imgUrl)}
-                        style={{position:'absolute', top:'5px', right:'5px', background:'rgba(255,0,0,0.8)', border:'none', color:'white', padding:'5px', borderRadius:'50%', cursor:'pointer'}}
-                      >
-                        <Trash2 size={14}/>
-                      </button>
+                      
+                      {/* Top Action Bar */}
+                      <div style={{position:'absolute', top:'5px', right:'5px', display:'flex', gap:'5px'}}>
+                        {i > 0 && (
+                          <button 
+                            onClick={() => handleMoveSlide(i, -1)}
+                            style={{background:'rgba(0, 0, 0, 0.8)', border:'none', color:'white', padding:'5px', borderRadius:'5px', cursor:'pointer'}}
+                            title="Move slide left"
+                          >
+                            <ChevronLeft size={14}/>
+                          </button>
+                        )}
+                        {i < selectedAlbum.images.length - 1 && (
+                          <button 
+                            onClick={() => handleMoveSlide(i, 1)}
+                            style={{background:'rgba(0, 0, 0, 0.8)', border:'none', color:'white', padding:'5px', borderRadius:'5px', cursor:'pointer'}}
+                            title="Move slide right"
+                          >
+                            <ChevronRight size={14}/>
+                          </button>
+                        )}
+                        <button 
+                          onClick={() => handleRemoveImageFromAlbum(imgUrl)}
+                          style={{background:'rgba(255,0,0,0.8)', border:'none', color:'white', padding:'5px', borderRadius:'5px', cursor:'pointer'}}
+                          title="Delete slide"
+                        >
+                          <Trash2 size={14}/>
+                        </button>
+                      </div>
+
                       <div style={{position:'absolute', bottom:'5px', left:'5px', background:'rgba(0,0,0,0.7)', padding:'2px 8px', borderRadius:'10px', fontSize:'0.75rem'}}>Slide {i+1}</div>
                     </div>
                   ))
