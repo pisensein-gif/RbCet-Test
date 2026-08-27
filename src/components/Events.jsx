@@ -65,7 +65,7 @@ const Events = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onClick={() => navigate(`/events/${cat.id}`)}
+              onClick={() => cat.id === 'achievements' ? navigate('/achievements') : navigate(`/events/${cat.id}`)}
             >
               <div className="card-bg-wrapper">
                 <img src={cat.image} alt={cat.title} className="card-bg-img" />
@@ -93,4 +93,5 @@ const Events = () => {
 };
 
 export default Events;
+
 
