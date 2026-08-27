@@ -134,6 +134,24 @@
   margin: 0;
 }
 
+@media (max-width: 767px) {
+  .achievement-image-container {
+    aspect-ratio: 2/1; 
+  }
+  .achievements-page {
+    padding: 80px 15px 40px;
+  }
+  .achievements-title {
+    font-size: 2.2rem;
+  }
+  .achievement-details {
+    padding: 20px 15px;
+  }
+  .achv-title {
+    font-size: 1.4rem;
+  }
+}
+
 @media (min-width: 768px) {
   .achievement-card {
     flex-direction: row;

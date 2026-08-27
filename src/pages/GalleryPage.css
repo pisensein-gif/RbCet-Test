@@ -126,6 +126,15 @@
 }
 
 /* Lightbox Styles */
+.lightbox-img-wrapper {
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 255, 204, 0.2);
+}
 .lightbox-overlay {
   position: fixed;
   top: 0;
@@ -142,6 +151,13 @@
 }
 
 .lightbox-content {
+  width: 90vw;
+  max-width: 1000px;
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
@@ -173,11 +189,11 @@
 
 @media (max-width: 768px) {
   .gallery-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   .public-gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
     padding: 10px;
   }
   .gallery-loading-card {
@@ -185,5 +201,17 @@
   }
   .gallery-loading-title {
     font-size: 1.8rem;
+  }
+  .lightbox-content {
+    aspect-ratio: auto;
+    width: 95vw;
+  }
+  .lightbox-img-wrapper {
+    height: 50vh;
+  }
+  .lightbox-title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 15px;
   }
 }

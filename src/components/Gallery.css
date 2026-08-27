@@ -71,12 +71,14 @@
 @media (max-width: 768px) {
   .gallery-collage {
     padding: 30px 10px;
+    gap: 15px;
   }
 
   .gallery-item {
-    width: 160px;
-    height: 200px;
-    margin: -10px -15px;
+    width: clamp(140px, 45vw, 180px);
+    height: auto;
+    aspect-ratio: 4/5;
+    margin: 0;
   }
 
   .photo-frame {
@@ -99,8 +101,9 @@
 
 @media (max-width: 480px) {
   .gallery-item {
-    width: 140px;
-    height: 175px;
-    margin: -8px -12px;
+    width: clamp(130px, 42vw, 160px);
+    height: auto;
+    aspect-ratio: 3/4;
+    margin: 0;
   }
 }

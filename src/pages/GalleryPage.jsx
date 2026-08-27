@@ -222,13 +222,13 @@ const GalleryPage = () => {
           >
             <motion.div 
               className="lightbox-content"
-              style={{width: '90vw', maxWidth: '1000px', aspectRatio: '16/9', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}
+              className="lightbox-content"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{width:'100%', height:'80vh', overflow:'hidden', borderRadius:'12px', background:'#000', position:'relative', boxShadow: '0 0 50px rgba(0, 255, 204, 0.2)'}}>
+              <div className="lightbox-img-wrapper">
                 <AutoSlideshow images={selectedAlbum.images} title={selectedAlbum.title} />
               </div>
               <p className="lightbox-title" style={{marginTop: '20px'}}>{selectedAlbum.title}</p>

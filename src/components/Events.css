@@ -169,11 +169,12 @@
   }
   
   .event-category-card {
-    height: 380px;
+    height: auto;
+    min-height: 340px;
   }
 
   .card-content {
-    padding: 20px;
+    padding: 15px;
   }
 
   .card-title {
@@ -181,7 +182,6 @@
     margin-bottom: 6px;
   }
 
-  /* Automatically show details on mobile touch screens */
   .card-header {
     transform: translateY(0);
   }

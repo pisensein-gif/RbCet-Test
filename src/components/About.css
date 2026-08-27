@@ -333,7 +333,7 @@
     padding: 20px 14px;
   }
   .quote-text {
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 5vw, 1.35rem);
   }
   .about-lead-text, .about-intro-right {
     font-size: 0.95rem;
@@ -352,5 +352,9 @@
   }
   .vision-card {
     padding: 30px 20px;
+  }
+  .vision-subtitle {
+    font-size: clamp(1.5rem, 6vw, 1.8rem);
+    margin: 50px 0 30px;
   }
 }
