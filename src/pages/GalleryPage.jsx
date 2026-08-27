@@ -222,7 +222,6 @@ const GalleryPage = () => {
           >
             <motion.div 
               className="lightbox-content"
-              className="lightbox-content"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
@@ -241,3 +240,4 @@ const GalleryPage = () => {
 };
 
 export default GalleryPage;
+
