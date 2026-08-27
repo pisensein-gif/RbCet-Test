@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Trophy, ArrowRight } from 'lucide-react';
 import { db } from '../firebase';
-import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import './AchievementsPreview.css';
 
 const AchievementsPreview = () => {
@@ -83,3 +83,4 @@ const AchievementsPreview = () => {
 };
 
 export default AchievementsPreview;
+
