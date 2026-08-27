@@ -3,49 +3,50 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Events.css';
 
+import workshopImg from '../assets/images/Workshopes.png';
+import competitionImg from '../assets/images/competetion.png';
+import projectImg from '../assets/images/Projects.png';
+import articleImg from '../assets/images/Article.png';
+import talkSessionImg from '../assets/images/Talksession.png';
+import achievementsImg from '../assets/images/Achievements.png';
+
 const Events = () => {
   const categories = [
     {
       id: "workshop",
       title: "Workshops",
       description: "Hands-on sessions diving into robotics, AI, and hardware.",
-      image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80",
-      eventCount: "12+ Events"
+      image: workshopImg
     },
     {
       id: "competition",
       title: "Competitions",
       description: "Hackathons, RoboWars, and algorithmic challenges.",
-      image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=800&q=80",
-      eventCount: "5+ Upcoming"
+      image: competitionImg
     },
     {
       id: "project",
       title: "Projects",
       description: "Showcases of incredible student-made robotics projects.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
-      eventCount: "Ongoing"
+      image: projectImg
     },
     {
       id: "article",
       title: "Articles",
       description: "Technical blogs, research papers, and club documentation.",
-      image: "https://images.unsplash.com/photo-1504164996022-09080787b6b3?auto=format&fit=crop&w=800&q=80",
-      eventCount: "Weekly Reads"
+      image: articleImg
     },
     {
       id: "talk-sessions",
       title: "Talk Sessions",
       description: "Guest lectures, alumni talks, and industry expert panels.",
-      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80",
-      eventCount: "Monthly"
+      image: talkSessionImg
     },
     {
       id: "achievements",
       title: "Achievements",
       description: "Our team's victories and milestones.",
-      image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?auto=format&fit=crop&w=800&q=80",
-      eventCount: "Hall of Fame"
+      image: achievementsImg
     }
   ];
 
@@ -79,13 +80,12 @@ const Events = () => {
               
               <div className="card-content">
                 <div className="card-header">
-                  
                   <h3 className="card-title">{cat.title}</h3>
                 </div>
                 <div className="card-body">
                   <p className="card-desc">{cat.description}</p>
                   <div className="btn-explore">
-                    Explore <span className="arrow">?</span>
+                    Explore <span className="arrow">→</span>
                   </div>
                 </div>
               </div>
@@ -98,5 +98,3 @@ const Events = () => {
 };
 
 export default Events;
-
-

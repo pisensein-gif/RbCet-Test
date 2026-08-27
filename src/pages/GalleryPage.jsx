@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Calendar, ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
 import { db } from '../firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
 import './GalleryPage.css';
 
-const AutoSlideshow = ({ images, title }) => {
+const AutoSlideshow = ({ images, title, isLightbox = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -15,12 +15,12 @@ const AutoSlideshow = ({ images, title }) => {
     if (!images || images.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [images]);
 
   const handleManualChange = (e, direction) => {
-    e.stopPropagation(); // prevent clicking the card/lightbox when clicking arrows
+    e.stopPropagation();
     if (!images || images.length <= 1) return;
     setCurrentIndex((prev) => {
       const nextIndex = prev + direction;
@@ -31,43 +31,76 @@ const AutoSlideshow = ({ images, title }) => {
   };
 
   if (!images || images.length === 0) {
-    return <div className="no-image" style={{display:'flex', alignItems:'center', justifyContent:'center', height:'100%', color:'rgba(255,255,255,0.5)'}}>No Images</div>;
+    return (
+      <div className="no-image" style={{display:'flex', alignItems:'center', justifyContent:'center', height:'100%', color:'rgba(255,255,255,0.4)', gap:'8px'}}>
+        <ImageIcon size={20} /> No Images
+      </div>
+    );
   }
+
+  // In Lightbox, arrows are ALWAYS visible. On thumbnail cards, visible on hover.
+  const showControls = isLightbox || isHovered;
 
   return (
     <div 
-      style={{width: '100%', height: '100%', position: 'relative'}}
+      className="slideshow-wrapper"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
-          alt={`${title} slide ${currentIndex}`}
+          alt={`${title} slide ${currentIndex + 1}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+          transition={{ duration: 0.5 }}
+          className={isLightbox ? "slideshow-img-lightbox" : "slideshow-img-cover"}
         />
       </AnimatePresence>
 
-      {images.length > 1 && isHovered && (
+      {/* Slide Counter Badge */}
+      {images.length > 1 && (
+        <div className="slide-counter-badge">
+          {currentIndex + 1} / {images.length}
+        </div>
+      )}
+
+      {/* Navigation Arrows */}
+      {images.length > 1 && (showControls || isLightbox) && (
         <>
           <button 
+            className="slideshow-nav-btn prev-btn"
             onClick={(e) => handleManualChange(e, -1)}
-            style={{position:'absolute', left:'10px', top:'50%', transform:'translateY(-50%)', zIndex:20, background:'rgba(0,0,0,0.6)', border:'1px solid rgba(255,255,255,0.2)', color:'white', padding:'8px', borderRadius:'50%', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center'}}
+            aria-label="Previous Slide"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={isLightbox ? 28 : 20} />
           </button>
           <button 
+            className="slideshow-nav-btn next-btn"
             onClick={(e) => handleManualChange(e, 1)}
-            style={{position:'absolute', right:'10px', top:'50%', transform:'translateY(-50%)', zIndex:20, background:'rgba(0,0,0,0.6)', border:'1px solid rgba(255,255,255,0.2)', color:'white', padding:'8px', borderRadius:'50%', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center'}}
+            aria-label="Next Slide"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={isLightbox ? 28 : 20} />
           </button>
         </>
+      )}
+
+      {/* Dots Indicator in Lightbox */}
+      {isLightbox && images.length > 1 && (
+        <div className="lightbox-dots-container">
+          {images.map((_, idx) => (
+            <span 
+              key={idx}
+              className={`lightbox-dot ${idx === currentIndex ? 'active' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(idx);
+              }}
+            />
+          ))}
+        </div>
       )}
     </div>
   );
@@ -86,7 +119,6 @@ const GalleryPage = () => {
   }, []);
 
   useEffect(() => {
-    // If albums are loaded and there's a URL parameter ?albumId=xyz, open it automatically
     if (albums.length > 0) {
       const searchParams = new URLSearchParams(location.search);
       const linkedAlbumId = searchParams.get('albumId');
@@ -116,7 +148,7 @@ const GalleryPage = () => {
     <div className="gallery-page-container">
       <div className="gallery-page-header">
         <Link to="/" className="back-link">
-          <ArrowLeft size={20} /> Back to Home
+          <ArrowLeft size={18} /> Back to Home
         </Link>
         <motion.h1 
           className="gallery-title"
@@ -130,7 +162,7 @@ const GalleryPage = () => {
         </p>
       </div>
 
-      <div className="gallery-page-content section-container">
+      <div className="gallery-page-content">
         <AnimatePresence mode="wait">
           {loading ? (
             <motion.div 
@@ -140,7 +172,6 @@ const GalleryPage = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              style={{marginTop: '50px'}}
             >
               <div className="logo-glow-wrapper">
                 <motion.img 
@@ -160,9 +191,9 @@ const GalleryPage = () => {
                 />
               </div>
               <div className="loading-text-container">
-                <motion.h1 className="gallery-loading-title" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <motion.h2 className="gallery-loading-title" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   Gallery Loading<span className="dots-pulse">...</span>
-                </motion.h1>
+                </motion.h2>
               </div>
             </motion.div>
           ) : error ? (
@@ -185,23 +216,20 @@ const GalleryPage = () => {
               {albums.map((album, index) => (
                 <motion.div 
                   key={album.id} 
-                  className="gallery-item glass-panel"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0, 255, 204, 0.15)" }}
+                  className="gallery-album-card glass-panel"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  whileHover={{ y: -6, boxShadow: "0 12px 35px rgba(0, 255, 204, 0.18)" }}
                   onClick={() => {if(album.images?.length > 0) setSelectedAlbum(album)}}
                 >
-                  <div className="gallery-item-image" style={{position: 'relative'}}>
-                    <AutoSlideshow images={album.images} title={album.title} />
-                    <div style={{position:'absolute', top:'10px', right:'10px', background:'rgba(0,0,0,0.7)', padding:'4px 10px', borderRadius:'15px', fontSize:'0.8rem', color:'#fff', zIndex:10}}>
-                      {album.images?.length || 0} Slides
-                    </div>
+                  <div className="gallery-album-image">
+                    <AutoSlideshow images={album.images} title={album.title} isLightbox={false} />
                   </div>
-                  <div className="gallery-item-info">
+                  <div className="gallery-album-info">
                     <h3>{album.title}</h3>
-                    <p style={{margin: '5px 0 0 0', fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: '5px'}}>
-                      <Calendar size={14}/> {new Date(album.date).toLocaleDateString('en-IN')}
+                    <p className="gallery-album-date">
+                      <Calendar size={13}/> {new Date(album.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}
                     </p>
                   </div>
                 </motion.div>
@@ -211,6 +239,7 @@ const GalleryPage = () => {
         </AnimatePresence>
       </div>
 
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedAlbum && (
           <motion.div 
@@ -222,15 +251,32 @@ const GalleryPage = () => {
           >
             <motion.div 
               className="lightbox-content"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Close Button */}
+              <button 
+                className="lightbox-close-btn"
+                onClick={() => setSelectedAlbum(null)}
+                aria-label="Close Lightbox"
+              >
+                <X size={22} />
+              </button>
+
+              {/* Main Slideshow Container */}
               <div className="lightbox-img-wrapper">
-                <AutoSlideshow images={selectedAlbum.images} title={selectedAlbum.title} />
+                <AutoSlideshow 
+                  images={selectedAlbum.images} 
+                  title={selectedAlbum.title} 
+                  isLightbox={true} 
+                />
               </div>
-              <p className="lightbox-title" style={{marginTop: '20px'}}>{selectedAlbum.title}</p>
+
+              {/* Album Title */}
+              <h3 className="lightbox-title">{selectedAlbum.title}</h3>
             </motion.div>
           </motion.div>
         )}
@@ -240,4 +286,3 @@ const GalleryPage = () => {
 };
 
 export default GalleryPage;
-

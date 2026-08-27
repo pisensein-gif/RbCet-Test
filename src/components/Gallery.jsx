@@ -45,7 +45,7 @@ const Gallery = () => {
             return (
               <motion.div
                 key={index}
-                className="gallery-item"
+                className="collage-item"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{

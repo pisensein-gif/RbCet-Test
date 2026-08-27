@@ -2,8 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import './Admin.css';
-import '../components/Events.css'; // Reuse the beautiful card styles
+import '../components/Events.css';
+
+import workshopImg from '../assets/images/Workshopes.png';
+import competitionImg from '../assets/images/competetion.png';
+import projectImg from '../assets/images/Projects.png';
+import articleImg from '../assets/images/Article.png';
+import talkSessionImg from '../assets/images/Talksession.png';
+import achievementsImg from '../assets/images/Achievements.png';
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -13,43 +21,43 @@ const Admin = () => {
       id: "workshop",
       title: "Workshops",
       description: "Manage robotics, AI, and hardware workshops.",
-      image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80",
+      image: workshopImg
     },
     {
       id: "competition",
       title: "Competitions",
       description: "Manage Hackathons and RoboWars events.",
-      image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=800&q=80",
+      image: competitionImg
     },
     {
       id: "project",
       title: "Projects",
       description: "Manage student-made robotics projects.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+      image: projectImg
     },
     {
       id: "article",
       title: "Articles",
       description: "Manage technical blogs and documentation.",
-      image: "https://images.unsplash.com/photo-1504164996022-09080787b6b3?auto=format&fit=crop&w=800&q=80",
+      image: articleImg
     },
     {
       id: "talk-sessions",
       title: "Talk Sessions",
       description: "Manage guest lectures and industry panels.",
-      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80",
+      image: talkSessionImg
     },
-        {
+    {
       id: "gallery",
       title: "Gallery",
       description: "Manage public photo repository.",
-      image: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&w=800&q=80"
     },
     {
       id: "achievements",
       title: "Achievements",
       description: "Manage student and team accomplishments.",
-      image: "https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?auto=format&fit=crop&w=800&q=80",
+      image: achievementsImg
     }
   ];
 
@@ -57,8 +65,7 @@ const Admin = () => {
     <div className="admin-dashboard">
       <div className="admin-header" style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '20px'}}>
         <Link to="/" className="back-link">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
-          Back to Home
+          <ArrowLeft size={20} /> Back to Home
         </Link>
         <h1>Admin Discover Hub</h1>
       </div>
@@ -84,13 +91,12 @@ const Admin = () => {
               
               <div className="card-content">
                 <div className="card-header">
-                  
                   <h3 className="card-title">{cat.title}</h3>
                 </div>
                 <div className="card-body">
                   <p className="card-desc">{cat.description}</p>
                   <div className="btn-explore">
-                    Enter <span className="arrow">?</span>
+                    Enter <span className="arrow">→</span>
                   </div>
                 </div>
               </div>
@@ -103,7 +109,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
-
-
-

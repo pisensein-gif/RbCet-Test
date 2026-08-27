@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import KnowMore from './pages/KnowMore';
 import GalleryPage from './pages/GalleryPage';
+import SponsorPage from './pages/SponsorPage';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
 import Admin from './pages/Admin';
@@ -34,6 +35,7 @@ function App() {
               <Route path="/know-more" element={<KnowMore />} />
               <Route path="/about" element={<KnowMore />} />
               <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/sponsor" element={<SponsorPage />} />
               <Route path="/events/:categoryId" element={<CategoryPage />} />
               <Route path="/register/:eventId" element={<Register />} />
               
@@ -54,7 +56,7 @@ function App() {
                   <AdminCategory />
                 </ProtectedRoute>
               } />
-                          <Route path="/achievements" element={<AchievementsPage />} />
+              <Route path="/achievements" element={<AchievementsPage />} />
               <Route path="/admin/achievements" element={
                 <ProtectedRoute>
                   <AdminAchievement />
@@ -70,7 +72,3 @@ function App() {
 }
 
 export default App;
-
-
-
-

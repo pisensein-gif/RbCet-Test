@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowLeft, LogOut } from 'lucide-react';
+import { Menu, X, ArrowLeft, LogOut, Sparkles } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -78,7 +78,9 @@ const Navbar = () => {
               <ArrowLeft size={16} /> {isSubAdminPage ? "Back to Admin Hub" : "Back to Home"}
             </Link>
           ) : (
-            <button className="btn-primary sponsor-btn">Sponsor US</button>
+            <Link to="/sponsor" className="btn-primary sponsor-btn">
+              Sponsor Us
+            </Link>
           )}
           
           {/* Mobile Menu Toggle - Hidden on Admin/Register Pages */}
@@ -101,6 +103,15 @@ const Navbar = () => {
                 </a>
               </li>
             ))}
+            <li className="mobile-sponsor-item">
+              <Link 
+                to="/sponsor" 
+                className="btn-primary mobile-sponsor-btn"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Sparkles size={16} /> Sponsor Us
+              </Link>
+            </li>
           </ul>
         </div>
       )}
@@ -109,6 +120,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
