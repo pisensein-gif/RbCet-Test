@@ -71,22 +71,21 @@
 @media (max-width: 768px) {
   .gallery-collage {
     padding: 30px 10px;
-    gap: 15px;
+    gap: 0;
   }
 
   .collage-item {
-    width: clamp(140px, 45vw, 180px);
-    height: auto;
-    aspect-ratio: 4/5;
-    margin: 0;
+    width: 175px;
+    height: 225px;
+    margin: -14px -18px;
   }
 
   .photo-frame {
-    padding: 8px 8px 26px 8px;
+    padding: 8px 8px 24px 8px;
   }
 
   .gallery-btn-wrapper {
-    margin-top: 35px;
+    margin-top: 40px;
     margin-left: 0;
     width: 100%;
   }
@@ -101,9 +100,8 @@
 
 @media (max-width: 480px) {
   .collage-item {
-    width: clamp(130px, 42vw, 160px);
-    height: auto;
-    aspect-ratio: 3/4;
-    margin: 0;
+    width: 148px;
+    height: 190px;
+    margin: -12px -15px;
   }
 }

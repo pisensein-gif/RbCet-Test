@@ -188,6 +188,17 @@
     gap: 20px;
     width: 100%;
   }
+
+  /* On mobile: Chairperson appears right after Staff Advisor, then Vice Chairperson, then G-Sec */
+  .execom-row-leadership .role-chairperson {
+    order: 1 !important;
+  }
+  .execom-row-leadership .role-vice-chairperson {
+    order: 2 !important;
+  }
+  .execom-row-leadership .role-g-sec {
+    order: 3 !important;
+  }
   
   .team-card.large, .team-card {
     width: 100%;

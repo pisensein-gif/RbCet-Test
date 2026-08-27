@@ -56,35 +56,39 @@ const Team = () => {
     { name: "Anavadya Pradeep", role: "Web Admin", img: imgAnavadya },
   ];
 
-  const TeamCard = ({ member, index, isLarge = false, isAdvisor = false }) => (
-    <motion.div 
-      className={`team-card ${isLarge ? 'large' : ''} ${isAdvisor ? 'advisor-card' : ''}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
-    >
-      <div className="team-image-wrapper">
-        {member.img ? (
-          <img 
-            src={member.img} 
-            alt={member.name} 
-            className="team-img" 
-            style={member.objectPosition ? { objectPosition: member.objectPosition } : {}}
-          />
-        ) : (
-          <div className="team-placeholder">
-            {member.name.charAt(0)}
-          </div>
-        )}
-      </div>
-      <div className="team-info">
-        <h3 className="team-name">{member.name}</h3>
-        <p className="team-role">{member.role}</p>
-        <div className="team-accent-line"></div>
-      </div>
-    </motion.div>
-  );
+  const TeamCard = ({ member, index, isLarge = false, isAdvisor = false }) => {
+    const roleSlug = member.role.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+    return (
+      <motion.div 
+        className={`team-card ${isLarge ? 'large' : ''} ${isAdvisor ? 'advisor-card' : ''} role-${roleSlug}`}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
+      >
+        <div className="team-image-wrapper">
+          {member.img ? (
+            <img 
+              src={member.img} 
+              alt={member.name} 
+              className="team-img" 
+              style={member.objectPosition ? { objectPosition: member.objectPosition } : {}}
+            />
+          ) : (
+            <div className="team-placeholder">
+              {member.name.charAt(0)}
+            </div>
+          )}
+        </div>
+        <div className="team-info">
+          <h3 className="team-name">{member.name}</h3>
+          <p className="team-role">{member.role}</p>
+          <div className="team-accent-line"></div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <section id="team" className="section-container">
@@ -101,7 +105,7 @@ const Team = () => {
             <TeamCard member={staffAdvisor} index={0} isLarge={true} isAdvisor={true} />
           </div>
           
-          {/* Row 2: Leadership Trio (Vice Chairperson, Chairperson, G-Sec) */}
+          {/* Row 2: Leadership Trio (Vice Chairperson, Chairperson, G-Sec on desktop; Chairperson -> Vice Chair -> G-Sec on mobile) */}
           <div className="execom-row-leadership">
             {leadership.map((member, index) => (
               <TeamCard key={index} member={member} index={index} isLarge={true} />

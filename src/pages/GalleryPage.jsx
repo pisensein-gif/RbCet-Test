@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Calendar, ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
 import logo from '../assets/images/robocet.webp';
 import { db } from '../firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
@@ -15,7 +15,7 @@ const AutoSlideshow = ({ images, title, isLightbox = false }) => {
     if (!images || images.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 2000); // 2s automatic transition
     return () => clearInterval(interval);
   }, [images]);
 
@@ -38,7 +38,6 @@ const AutoSlideshow = ({ images, title, isLightbox = false }) => {
     );
   }
 
-  // In Lightbox, arrows are ALWAYS visible. On thumbnail cards, visible on hover.
   const showControls = isLightbox || isHovered;
 
   return (
@@ -55,7 +54,7 @@ const AutoSlideshow = ({ images, title, isLightbox = false }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className={isLightbox ? "slideshow-img-lightbox" : "slideshow-img-cover"}
         />
       </AnimatePresence>
@@ -228,9 +227,6 @@ const GalleryPage = () => {
                   </div>
                   <div className="gallery-album-info">
                     <h3>{album.title}</h3>
-                    <p className="gallery-album-date">
-                      <Calendar size={13}/> {new Date(album.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}
-                    </p>
                   </div>
                 </motion.div>
               ))}
