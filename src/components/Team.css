@@ -1,26 +1,27 @@
 .execom-hierarchy-container {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin-top: 50px;
+  gap: 45px;
+  margin-top: 40px;
 }
 
-.execom-row-1 {
+.execom-row-advisor {
   display: flex;
   justify-content: center;
 }
 
-.execom-row-2 {
+.execom-row-leadership {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 35px;
+  flex-wrap: wrap;
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .team-card {
@@ -40,8 +41,18 @@
 }
 
 .team-card.large {
-  width: 320px;
-  padding: 50px 20px 40px;
+  width: 300px;
+  padding: 45px 20px 35px;
+}
+
+.team-card.advisor-card {
+  border-color: rgba(0, 255, 204, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 255, 204, 0.08);
+}
+
+.team-card.advisor-card .team-image-wrapper {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
 }
 
 .team-card:hover, .team-card:active {
@@ -78,8 +89,8 @@
 }
 
 .team-card.large .team-image-wrapper {
-  width: 160px;
-  height: 160px;
+  width: 155px;
+  height: 155px;
 }
 
 .team-card:hover .team-image-wrapper, .team-card:active .team-image-wrapper {
@@ -152,6 +163,12 @@
 }
 
 /* Tablet & Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .execom-row-leadership {
+    gap: 20px;
+  }
+}
+
 @media (max-width: 900px) {
   .team-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -165,7 +182,7 @@
     margin-top: 30px;
   }
 
-  .execom-row-1, .execom-row-2 {
+  .execom-row-advisor, .execom-row-leadership {
     flex-direction: column;
     align-items: center;
     gap: 20px;

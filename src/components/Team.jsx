@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Team.css';
 
+import imgStaffAdvisor from '../assets/execom/Staff_Advisor.png';
 import imgGautham from '../assets/execom/Gautham_syam.webp';
 import imgDon from '../assets/execom/DON JOSEPH CHACKO.webp';
 import imgAfsal from '../assets/execom/Afsal V N.webp';
@@ -23,10 +24,20 @@ import imgKailasnath from '../assets/execom/Kailasnath_A.webp';
 import imgAnavadya from '../assets/execom/Anavadya Pradeep.webp';
 
 const Team = () => {
-  const teamMembers = [
-    { name: "Gautham", role: "Chairperson", img: imgGautham },
+  const staffAdvisor = { 
+    name: "Dr. Kiran R", 
+    role: "Staff Advisor", 
+    img: imgStaffAdvisor,
+    objectPosition: "center 20%"
+  };
+
+  const leadership = [
     { name: "Don Joseph Chacko", role: "Vice Chairperson", img: imgDon },
+    { name: "Gautham", role: "Chairperson", img: imgGautham },
     { name: "Afsal V N", role: "G-Sec", img: imgAfsal, objectPosition: "center 15%" },
+  ];
+
+  const restOfTeam = [
     { name: "Akash", role: "Treasurer", img: imgAkash },
     { name: "Blesson", role: "Tech Head", img: imgBlesson },
     { name: "Prithvika", role: "Women In Tech", img: imgPrithvika },
@@ -45,14 +56,9 @@ const Team = () => {
     { name: "Anavadya Pradeep", role: "Web Admin", img: imgAnavadya },
   ];
 
-  const chairperson = teamMembers.find(m => m.role === "Chairperson");
-  const viceChairperson = teamMembers.find(m => m.role === "Vice Chairperson");
-  const gSec = teamMembers.find(m => m.role === "G-Sec");
-  const restOfTeam = teamMembers.filter(m => !["Chairperson", "Vice Chairperson", "G-Sec"].includes(m.role));
-
-  const TeamCard = ({ member, index, isLarge = false }) => (
+  const TeamCard = ({ member, index, isLarge = false, isAdvisor = false }) => (
     <motion.div 
-      className={`team-card ${isLarge ? 'large' : ''}`}
+      className={`team-card ${isLarge ? 'large' : ''} ${isAdvisor ? 'advisor-card' : ''}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -90,15 +96,19 @@ const Team = () => {
       >
         <h2 className="section-title">Execom 2026</h2>
         <div className="execom-hierarchy-container">
-          <div className="execom-row-1">
-            {chairperson && <TeamCard member={chairperson} index={0} isLarge={true} />}
+          {/* Row 1: Staff Advisor */}
+          <div className="execom-row-advisor">
+            <TeamCard member={staffAdvisor} index={0} isLarge={true} isAdvisor={true} />
           </div>
           
-          <div className="execom-row-2">
-            {viceChairperson && <TeamCard member={viceChairperson} index={0} isLarge={true} />}
-            {gSec && <TeamCard member={gSec} index={1} isLarge={true} />}
+          {/* Row 2: Leadership Trio (Vice Chairperson, Chairperson, G-Sec) */}
+          <div className="execom-row-leadership">
+            {leadership.map((member, index) => (
+              <TeamCard key={index} member={member} index={index} isLarge={true} />
+            ))}
           </div>
 
+          {/* Rest of Execom Grid */}
           <div className="team-grid">
             {restOfTeam.map((member, index) => (
               <TeamCard key={index} member={member} index={index} />
