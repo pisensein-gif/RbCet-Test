@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿# -*- coding: utf-8 -*-
+import sys
+
+gallery_page_jsx = '''import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Calendar, ChevronLeft, ChevronRight, X, Image as ImageIcon } from 'lucide-react';
@@ -287,3 +290,9 @@ const GalleryPage = () => {
 };
 
 export default GalleryPage;
+'''
+
+with open('src/pages/GalleryPage.jsx', 'w', encoding='utf-8') as f:
+    f.write(gallery_page_jsx)
+
+print("GalleryPage updated with 4s interval and clean date tag!")
