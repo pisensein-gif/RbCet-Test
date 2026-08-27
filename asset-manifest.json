@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/RbCet-Test/static/css/main.7b923221.css",
-    "main.js": "/RbCet-Test/static/js/main.12703a45.js",
+    "main.js": "/RbCet-Test/static/js/main.4554fdf6.js",
     "static/media/Projects.png": "/RbCet-Test/static/media/Projects.4b24865dcf06f5ddb008.png",
     "static/media/Talksession.png": "/RbCet-Test/static/media/Talksession.a4f03454212f427971e0.png",
     "static/media/competetion.png": "/RbCet-Test/static/media/competetion.501dd632ca7035d23c79.png",
@@ -44,10 +44,10 @@
     "static/media/robocet.webp": "/RbCet-Test/static/media/robocet.6cf2dd9cf10e67c1032c.webp",
     "index.html": "/RbCet-Test/index.html",
     "main.7b923221.css.map": "/RbCet-Test/static/css/main.7b923221.css.map",
-    "main.12703a45.js.map": "/RbCet-Test/static/js/main.12703a45.js.map"
+    "main.4554fdf6.js.map": "/RbCet-Test/static/js/main.4554fdf6.js.map"
   },
   "entrypoints": [
     "static/css/main.7b923221.css",
-    "static/js/main.12703a45.js"
+    "static/js/main.4554fdf6.js"
   ]
 }
