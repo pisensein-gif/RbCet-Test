@@ -41,6 +41,7 @@ const Navbar = () => {
     { name: 'Home', href: '/#home' },
     { name: 'About', href: '/#about' },
     { name: 'Events', href: '/#events' },
+    { name: 'Achievements', href: '/achievements' },
     { name: 'Execom', href: '/#team' },
     { name: 'Contact', href: '/#contact' },
   ];
@@ -109,3 +110,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

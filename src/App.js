@@ -10,6 +10,8 @@ import Preloader from './components/Preloader';
 import Admin from './pages/Admin';
 import AdminCategory from './pages/AdminCategory';
 import AdminGallery from './pages/AdminGallery';
+import AchievementsPage from './pages/AchievementsPage';
+import AdminAchievement from './pages/AdminAchievement';
 import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -62,5 +64,6 @@ function App() {
 }
 
 export default App;
+
 
 
