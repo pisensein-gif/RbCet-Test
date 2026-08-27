@@ -26,7 +26,7 @@ function App() {
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       
       {!isLoading && (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <ScrollToTop />
           <div className="App">
             <Navbar />
