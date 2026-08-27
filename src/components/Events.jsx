@@ -59,7 +59,7 @@ const Events = () => {
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="section-title">Events Hub</h2>
+        <h2 className="section-title">Discover RoboCET</h2>
         
         <div className="events-grid">
           {categories.map((cat, index) => (
@@ -98,4 +98,5 @@ const Events = () => {
 };
 
 export default Events;
+
 
