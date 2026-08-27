@@ -36,7 +36,7 @@ const AchievementsPreview = () => {
     fetchAchievements();
   }, []);
 
-  if (loading || achievements.length === 0) return null; // Don't show section if empty
+  if (loading) return null;
 
   return (
     <section className="achievements-preview section-container">
@@ -83,4 +83,5 @@ const AchievementsPreview = () => {
 };
 
 export default AchievementsPreview;
+
 
