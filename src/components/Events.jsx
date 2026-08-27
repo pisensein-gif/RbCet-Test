@@ -79,7 +79,7 @@ const Events = () => {
               
               <div className="card-content">
                 <div className="card-header">
-                  <span className="card-meta">{cat.eventCount}</span>
+                  
                   <h3 className="card-title">{cat.title}</h3>
                 </div>
                 <div className="card-body">
@@ -98,3 +98,4 @@ const Events = () => {
 };
 
 export default Events;
+
