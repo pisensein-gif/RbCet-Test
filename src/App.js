@@ -54,6 +54,12 @@ function App() {
                   <AdminCategory />
                 </ProtectedRoute>
               } />
+                          <Route path="/achievements" element={<AchievementsPage />} />
+              <Route path="/admin/achievements" element={
+                <ProtectedRoute>
+                  <AdminAchievement />
+                </ProtectedRoute>
+              } />
             </Routes>
             <Footer />
           </div>
@@ -64,6 +70,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
