@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿# -*- coding: utf-8 -*-
+import sys
+
+preloader_jsx = '''import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import heroVideo from '../assets/videos/Hero3.mp4';
 import heroVideoMob from '../assets/videos/Hero_mob.mp4';
@@ -106,3 +109,60 @@ const Preloader = ({ onComplete }) => {
 };
 
 export default Preloader;
+'''
+
+with open('src/components/Preloader.jsx', 'w', encoding='utf-8') as f:
+    f.write(preloader_jsx)
+
+# Update Preloader.css
+preloader_css = '''.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.preloader-video {
+  width: 85vw;
+  max-width: 380px;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+}
+
+.preloader-status-text {
+  position: absolute;
+  bottom: 45px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .preloader-video {
+    max-width: 280px;
+    max-height: 280px;
+  }
+  .preloader-status-text {
+    bottom: 35px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+}
+'''
+
+with open('src/components/Preloader.css', 'w', encoding='utf-8') as f:
+    f.write(preloader_css)
+
+print("Preloader updated with bundled video imports successfully!")
