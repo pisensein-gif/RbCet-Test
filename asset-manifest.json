@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/RbCet-Test/static/css/main.145588c5.css",
-    "main.js": "/RbCet-Test/static/js/main.b0b911fd.js",
+    "main.css": "/RbCet-Test/static/css/main.6d8e89e2.css",
+    "main.js": "/RbCet-Test/static/js/main.67b20279.js",
     "static/media/Projects.png": "/RbCet-Test/static/media/Projects.4b24865dcf06f5ddb008.png",
     "static/media/Talksession.png": "/RbCet-Test/static/media/Talksession.a4f03454212f427971e0.png",
     "static/media/competetion.png": "/RbCet-Test/static/media/competetion.501dd632ca7035d23c79.png",
@@ -10,6 +10,7 @@
     "static/media/Achievements.png": "/RbCet-Test/static/media/Achievements.f8380159b268fcc61dfb.png",
     "static/media/Hero3.mp4": "/RbCet-Test/static/media/Hero3.af4416828be5ea7b5e57.mp4",
     "static/media/Hero_mob.mp4": "/RbCet-Test/static/media/Hero_mob.464d3fc53b8e8e8bf433.mp4",
+    "static/media/Staff_Advisor.png": "/RbCet-Test/static/media/Staff_Advisor.94cd68e660da1ac80628.png",
     "static/media/Loading.mp4": "/RbCet-Test/static/media/Loading.33d1e8e4e4a75b8775e2.mp4",
     "static/media/7.webp": "/RbCet-Test/static/media/7.8465a280afea78e79d0b.webp",
     "static/media/Loading.webm": "/RbCet-Test/static/media/Loading.10983691a8000193a830.webm",
@@ -42,11 +43,11 @@
     "static/media/Noel Thomas Joshy.webp": "/RbCet-Test/static/media/Noel Thomas Joshy.b7adb31f535118d3e1e6.webp",
     "static/media/robocet.webp": "/RbCet-Test/static/media/robocet.6cf2dd9cf10e67c1032c.webp",
     "index.html": "/RbCet-Test/index.html",
-    "main.145588c5.css.map": "/RbCet-Test/static/css/main.145588c5.css.map",
-    "main.b0b911fd.js.map": "/RbCet-Test/static/js/main.b0b911fd.js.map"
+    "main.6d8e89e2.css.map": "/RbCet-Test/static/css/main.6d8e89e2.css.map",
+    "main.67b20279.js.map": "/RbCet-Test/static/js/main.67b20279.js.map"
   },
   "entrypoints": [
-    "static/css/main.145588c5.css",
-    "static/js/main.b0b911fd.js"
+    "static/css/main.6d8e89e2.css",
+    "static/js/main.67b20279.js"
   ]
 }
