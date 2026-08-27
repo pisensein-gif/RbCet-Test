@@ -34,7 +34,12 @@ const Events = () => {
       eventCount: "Weekly Reads"
     },
     {
-      ,
+      id: "talk-sessions",
+      title: "Talk Sessions",
+      description: "Guest lectures, alumni talks, and industry expert panels.",
+      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80",
+      eventCount: "Monthly"
+    },
     {
       id: "achievements",
       title: "Achievements",
@@ -80,7 +85,7 @@ const Events = () => {
                 <div className="card-body">
                   <p className="card-desc">{cat.description}</p>
                   <div className="btn-explore">
-                    Explore <span className="arrow">→</span>
+                    Explore <span className="arrow">?</span>
                   </div>
                 </div>
               </div>
@@ -93,5 +98,3 @@ const Events = () => {
 };
 
 export default Events;
-
-
