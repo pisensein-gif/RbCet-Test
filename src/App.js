@@ -23,15 +23,12 @@ function App() {
 
   return (
     <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      
-      {!isLoading && (
-        <Router basename={process.env.PUBLIC_URL}>
-          <ScrollToTop />
-          <div className="App">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
+      <Router basename={process.env.PUBLIC_URL}>
+        <ScrollToTop />
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home isLoading={isLoading} />} />
               <Route path="/know-more" element={<KnowMore />} />
               <Route path="/about" element={<KnowMore />} />
               <Route path="/gallery" element={<GalleryPage />} />
@@ -66,7 +63,9 @@ function App() {
             <Footer />
           </div>
         </Router>
-      )}
+
+      {/* Render Preloader on top of everything else */}
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
     </>
   );
 }

@@ -59,7 +59,7 @@ const Navbar = () => {
           <ul className="navbar-links desktop-menu">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={link.href}>{link.name}</a>
+                <Link to={link.href}>{link.name}</Link>
               </li>
             ))}
           </ul>
@@ -98,9 +98,9 @@ const Navbar = () => {
           <ul>
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={link.href} onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to={link.href} onClick={() => setIsMobileMenuOpen(false)}>
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="mobile-sponsor-item">

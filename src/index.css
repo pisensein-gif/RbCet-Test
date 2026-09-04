@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .App {
   min-height: 100vh;
@@ -18,6 +21,8 @@
   /* Fonts */
   --font-heading: 'Orbitron', sans-serif;
   --font-body: 'Sora', sans-serif;
+  --font-hero-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+  --font-hero-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
   
   /* Utilities */
   --glass-bg: rgba(17, 17, 17, 0.6);

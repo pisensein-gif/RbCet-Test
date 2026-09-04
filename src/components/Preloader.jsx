@@ -12,12 +12,19 @@ const Preloader = ({ onComplete }) => {
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const heroVideoRef = useRef(null);
 
-  // Detect mobile or desktop screen
-  const targetHeroVideo = typeof window !== 'undefined' && window.innerWidth <= 768 
-    ? heroVideoMob 
-    : heroVideo;
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
 
-  // Guarantee preloader displays cleanly for at least 1.8s
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handler = (e) => setIsDesktop(e.matches);
+    if (mediaQuery.addEventListener) mediaQuery.addEventListener('change', handler);
+    else mediaQuery.addListener(handler);
+    
+    return () => {
+      if (mediaQuery.removeEventListener) mediaQuery.removeEventListener('change', handler);
+      else mediaQuery.removeListener(handler);
+    };
+  }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       setMinTimeElapsed(true);
@@ -35,12 +42,43 @@ const Preloader = ({ onComplete }) => {
     };
   }, []);
 
-  // Check if hero video is already cached/buffered
+  // Check if hero video is already cached/buffered (for mobile)
   useEffect(() => {
-    if (heroVideoRef.current && heroVideoRef.current.readyState >= 3) {
+    if (!isDesktop && heroVideoRef.current && heroVideoRef.current.readyState >= 3) {
       setIsHeroReady(true);
     }
-  }, []);
+  }, [isDesktop]);
+
+  // Preload desktop frames
+  useEffect(() => {
+    if (!isDesktop) return;
+
+    let loadedCount = 0;
+    const totalFrames = 77;
+    let hasErrored = false;
+
+    const onImageLoad = () => {
+      loadedCount++;
+      if (loadedCount === totalFrames && !hasErrored) {
+        setIsHeroReady(true);
+      }
+    };
+
+    const onImageError = () => {
+      if (!hasErrored) {
+        hasErrored = true;
+        setIsHeroReady(true); // Fallback to avoid hanging
+      }
+    };
+
+    for (let i = 1; i <= totalFrames; i++) {
+      const img = new Image();
+      const padded = String(i).padStart(3, '0');
+      img.onload = onImageLoad;
+      img.onerror = onImageError;
+      img.src = `${process.env.PUBLIC_URL}/robot-frames/frame_${padded}.webp`;
+    }
+  }, [isDesktop]);
 
   // When BOTH the target Hero video is buffered AND min time has passed, complete preloading
   useEffect(() => {
@@ -81,19 +119,21 @@ const Preloader = ({ onComplete }) => {
             <source src={loadingMp4} type="video/mp4" />
           </video>
 
-          {/* Hidden Hero Video Preloader to preload exact device video into browser cache */}
-          <video
-            ref={heroVideoRef}
-            src={targetHeroVideo}
-            preload="auto"
-            muted
-            playsInline
-            onLoadedData={handleHeroLoaded}
-            onCanPlay={handleHeroLoaded}
-            onCanPlayThrough={handleHeroLoaded}
-            onError={handleHeroLoaded}
-            style={{ display: 'none' }}
-          />
+          {/* Hidden Hero Video Preloader for Mobile */}
+          {!isDesktop && (
+            <video
+              ref={heroVideoRef}
+              src={`${process.env.PUBLIC_URL}/Hero_mob2.mp4`}
+              preload="auto"
+              muted
+              playsInline
+              onLoadedData={handleHeroLoaded}
+              onCanPlay={handleHeroLoaded}
+              onCanPlayThrough={handleHeroLoaded}
+              onError={handleHeroLoaded}
+              style={{ display: 'none' }}
+            />
+          )}
 
           {/* Clean Loading indicator text */}
           <p className="preloader-status-text">

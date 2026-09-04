@@ -66,25 +66,6 @@ const SponsorPage = () => {
         </motion.div>
       </div>
 
-      {/* Stats Counter Row */}
-      <div className="sponsor-stats-grid section-container">
-        <motion.div className="sponsor-stat-card glass-panel" whileHover={{ y: -5 }}>
-          <h3>500+</h3>
-          <p>Active Student Innovators</p>
-        </motion.div>
-        <motion.div className="sponsor-stat-card glass-panel" whileHover={{ y: -5 }}>
-          <h3>30+</h3>
-          <p>Annual Workshops & Talks</p>
-        </motion.div>
-        <motion.div className="sponsor-stat-card glass-panel" whileHover={{ y: -5 }}>
-          <h3>15+</h3>
-          <p>National Competition Wins</p>
-        </motion.div>
-        <motion.div className="sponsor-stat-card glass-panel" whileHover={{ y: -5 }}>
-          <h3>10,000+</h3>
-          <p>Community Reach</p>
-        </motion.div>
-      </div>
 
       {/* Why Sponsor Us Grid */}
       <section className="section-container">
